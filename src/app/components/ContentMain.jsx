@@ -5,6 +5,7 @@ import Notice from "../components/Notice";
 import Datepicker from "../components/Datepicker";
 import InputSeach from "../components/InputSeach";
 import ProfileInfo from "../components/ProfileInfo";
+import SetAppointment from "../components/SetAppointment";
 
 function ContentMain() {
   const { contentView } = useContext(contextApp);
@@ -112,7 +113,6 @@ function ContentMain() {
                 </div>
               </div>
             </div>
-
             <div className="flex flex-col w-full pt-10 ">
               <Datepicker />
             </div>
@@ -123,7 +123,7 @@ function ContentMain() {
       {contentView === "routine" ? (
         <section>
           <h3 className="text-2xl">Consultas</h3>
-          <div className="flex w-full justify-between">
+          <div className="flex w-full justify-between gap-10">
             <div className="w-full">
               <h4>Médicos</h4>
               <div className="flex flex-col gap-4">
@@ -148,8 +148,20 @@ function ContentMain() {
                 <Datepicker />
               </div>
             </div>
-            <div>
+            <div className="w-full">
               <h4>Agendamentos</h4>
+              <div className="flex flex-col gap-4">
+                <SetAppointment
+                  appointmentTime="09:00"
+                  patientName="João"
+                  appointmentDescription="Consulta confirmada."
+                  setNew={true}
+                />
+                <SetAppointment appointmentTime="12:00"/>
+                <SetAppointment appointmentTime="15:00"/>
+                <SetAppointment appointmentTime="16:00"/>
+                <SetAppointment appointmentTime="17:00"/>
+              </div>
             </div>
           </div>
         </section>
