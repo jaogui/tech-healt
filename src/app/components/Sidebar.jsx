@@ -15,7 +15,7 @@ function Sidebar() {
          <button className="py-3 px-4 w-full text-left" onClick={() => setContentView('routine')}>Rotina de pacientes</button>
         </li>
         <li className="bg-slate-200 border border-b-slate-300 w-full hover:bg-slate-300">
-         <button className=" py-3 px-4 w-full text-left" onClick={() => setContentView('diary')}>Agendamentos</button>
+         <button className=" py-3 px-4 w-full text-left" onClick={() => setContentView('patients')}>Agendamentos</button>
         </li>
       </ul>
     </nav>
