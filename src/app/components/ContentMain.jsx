@@ -2,10 +2,11 @@ import { React, useContext } from "react";
 import { contextApp } from "../ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
 import Notice from "../components/Notice";
+import Datepicker from "../components/Datepicker";
+import 'react-day-picker/dist/style.css';
 
 function ContentMain() {
   const { contentView } = useContext(contextApp);
-
   return (
     <main className="px-5 py-8">
       {contentView === "workflow" ? (
@@ -17,49 +18,56 @@ function ContentMain() {
                 title="Agendamentos do dia"
                 infoContentMain="50"
                 infoContentSecondary="Agendados"
-                description="Verifique seus agendamentos do dia"
+                description="Verifique seus agendamentos do dia."
               />
               <DashboardBlock
                 title="Atendimentos do dia"
                 infoContentMain="175"
                 infoContentSecondary="Atendidos"
-                description="Atendimentos realizados no dia"
+                description="Atendimentos realizados no dia."
               />
               <DashboardBlock
-                title="Avisos"
-                infoContentMain="14"
-                infoContentSecondary="Avisos"
-                description="Verifique avisos importantes"
+                title="Faturamento"
+                infoContentMain="R$: 15.800"
+                infoContentSecondary="Faturamento"
+                description="Faturamento dos cliente de hoje."
               />
               <DashboardBlock
-                title="Lambretes"
+                title="Avisos/Lembretes"
                 infoContentMain="26"
                 infoContentSecondary="Lembretes"
-                description="Lembretes adicionados"
+                description="Lembretes adicionados."
               />
             </div>
           </div>
 
           <div className="flex w-full gap-2">
-            <div className="grid grid-flow-col max-w-[700px] gap-4 w-full items-center">
+            <div className="grid grid-flow-col max-w-[700px] gap-4 w-full ">
               <div className="w-full">
                 <h3 className="text-2xl py-3">Avisos</h3>
                 <div className="flex flex-col gap-2 w-full ">
                   <Notice
-                    priority={`#de6767b5`}
-                    titleNotice="Aviso de consulta"
+                    titleNotice="Aviso de solicitação"
                     idCheckbox="warningEdit"
-                    descriptionNotice="Luciano solicitou consulta para terça-feira."
+                    descriptionNotice="Luciano solicitou consulta para terça-feira, horário 12:20"
                   />
                   <Notice
-                    titleNotice="Aviso de consulta"
+                    priority={`#67c8deb5`}
+                    titleNotice="Aviso de confirmação"
                     idCheckbox="warningConfirm"
                     descriptionNotice="Luciana confirmou horário."
                   />
                   <Notice
-                    titleNotice="Aviso de consulta"
+                    priority={`#de6767b5`}
+                    titleNotice="Aviso de cancelamento"
                     idCheckbox="warningCancel"
                     descriptionNotice="Vivian cancelou consulta."
+                  />
+                  <Notice
+                    priority={`#67c8deb5`}
+                    titleNotice="Aviso de alteração"
+                    idCheckbox="warningAlter"
+                    descriptionNotice="Luiz solicitou alteração da consulta para quarta-feira ás 16:30"
                   />
                 </div>
               </div>
@@ -73,27 +81,34 @@ function ContentMain() {
                   />
                   <Notice
                     priority={`#de6767b5`}
-                    titleNotice="Lembrete de consulta"
+                    titleNotice="Lembrete de remarcação"
                     idCheckbox="reminderInfo"
                     descriptionNotice="Remarcar consulta com Vivian."
                   />
                   <Notice
                     priority={`#67c8deb5`}
-                    titleNotice="Lembrete de consulta"
+                    titleNotice="Lembrete de confirmação"
                     idCheckbox="reminderConfirm"
                     descriptionNotice="Confirmar consulta do Luciano."
+                  />
+                  <Notice
+                    titleNotice="Lembrete de consulta"
+                    idCheckbox="reminderQuery2"
+                    descriptionNotice="Consulta hoje ás 15:00 com Luciana."
+                  />
+                  <Notice
+                    titleNotice="Lembrete de confirmação"
+                    idCheckbox="reminderConfirm2"
+                    descriptionNotice="Confirmar consulta do Bruno."
                   />
                 </div>
               </div>
             </div>
 
-            {/* <div className="">
+            <div className="flex flex-col w-full">
               <h3 className="text-2xl">Agendamentos</h3>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-              fuga consectetur recusandae? Quis accusantium, dicta assumenda et
-              reprehenderit aut adipisci, nihil ullam fuga aspernatur minima
-              voluptates, asperiores itaque. Similique, vel?
-            </div> */}
+                <Datepicker />
+            </div>
           </div>
         </section>
       ) : null}
