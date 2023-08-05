@@ -1,4 +1,16 @@
+/* .rdp{
+  margin: unset !important;
+  height: 800px !important;
+  --rdp-cell-size: 60px !important;
+} */
+
+.rdp-table{
+  width: 100% !important;
+  max-width: unset !important;
+}
+
 .rdp-month{
+  width: 100%;
   background: #93d8e83d;
   padding: 10px;
   border-radius: 5px;

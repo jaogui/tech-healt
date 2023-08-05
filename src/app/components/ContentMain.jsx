@@ -9,6 +9,11 @@ import SetAppointment from "../components/SetAppointment";
 
 function ContentMain() {
   const { contentView } = useContext(contextApp);
+
+  const customDatePickerStyle = {
+    "--rdp-cell-size": "65px",
+  };
+
   return (
     <main className="px-9 py-8 bg-slate-100 h-screen">
       {contentView === "workflow" ? (
@@ -122,34 +127,35 @@ function ContentMain() {
 
       {contentView === "routine" ? (
         <section>
-          <h3 className="text-2xl">Consultas</h3>
           <div className="flex w-full justify-between gap-10">
-            <div className="w-full">
-              <h4>Médicos</h4>
+            <div className="w-full max-w-[550px]">
+              <h4 className="pb-4 text-lg">Médicos</h4>
               <div className="flex flex-col gap-4">
                 <ProfileInfo
                   nameProfile="Dra. Renata"
                   company="ConfiaMed"
                   specialization="Pediatra"
+                  status="Atendendo"
                 />
                 <ProfileInfo
                   nameProfile="Dr. Robson"
                   company="UltraMed"
                   specialization="Fisioterápia"
+                  status="Disponível"
                 />
                 <ProfileInfo
                   nameProfile="Dra. Bruna"
                   company="FloripaMed"
                   specialization="Psicologia"
+                  status="Ausente"
                 />
               </div>
-
-              <div className="flex flex-col w-full pt-10 ">
-                <Datepicker />
+              <div className="flex flex-col w-full pt-5 ">
+                <Datepicker style={customDatePickerStyle} />
               </div>
             </div>
             <div className="w-full">
-              <h4>Agendamentos</h4>
+              <h3 className="pb-4 text-lg">Agendamentos</h3>
               <div className="flex flex-col gap-4">
                 <SetAppointment
                   appointmentTime="09:00"

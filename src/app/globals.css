@@ -5,3 +5,28 @@
 body, * {
   box-sizing: border-box;
 }
+
+.status-indicator {
+  padding: 4px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.7rem;
+  width: 100%;
+  max-width: 80px; 
+  text-align: center;
+}
+
+.status-ausente {
+  background-color: #de6767;
+  color: black;
+}
+
+.status-disponivel {
+  background-color: #8dde679d;
+  color: black;
+}
+
+.status-atendendo {
+  background-color: #67c8de;;
+  color: black;
+}
