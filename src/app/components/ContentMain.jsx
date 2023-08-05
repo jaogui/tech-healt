@@ -3,7 +3,7 @@ import { contextApp } from "../ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
 import Notice from "../components/Notice";
 import Datepicker from "../components/Datepicker";
-import 'react-day-picker/dist/style.css';
+import "react-day-picker/dist/style.css";
 
 function ContentMain() {
   const { contentView } = useContext(contextApp);
@@ -27,22 +27,22 @@ function ContentMain() {
                 description="Atendimentos realizados no dia."
               />
               <DashboardBlock
-                title="Faturamento"
-                infoContentMain="R$: 15.800"
-                infoContentSecondary="Faturamento"
-                description="Faturamento dos cliente de hoje."
-              />
-              <DashboardBlock
                 title="Avisos/Lembretes"
                 infoContentMain="26"
                 infoContentSecondary="Lembretes"
                 description="Lembretes adicionados."
               />
+              <DashboardBlock
+                title="Faturamento"
+                infoContentMain="R$: 15.800"
+                infoContentSecondary="Faturamento"
+                description="Faturamento dos cliente de hoje."
+              />
             </div>
           </div>
 
-          <div className="flex w-full gap-2">
-            <div className="grid grid-flow-col max-w-[700px] gap-4 w-full ">
+          <div className="grid grid-flow-col grid-cols-1 w-full gap-2">
+            <div className="flex gap-4 w-full">
               <div className="w-full">
                 <h3 className="text-2xl py-3">Avisos</h3>
                 <div className="flex flex-col gap-2 w-full ">
@@ -71,7 +71,7 @@ function ContentMain() {
                   />
                 </div>
               </div>
-              <div>
+              <div className="w-full">
                 <h3 className="text-2xl py-3">Lembretes</h3>
                 <div className="flex flex-col w-full gap-2">
                   <Notice
@@ -105,9 +105,8 @@ function ContentMain() {
               </div>
             </div>
 
-            <div className="flex flex-col w-full">
-              <h3 className="text-2xl">Agendamentos</h3>
-                <Datepicker />
+            <div className="flex flex-col w-full pt-10 ">
+              <Datepicker />
             </div>
           </div>
         </section>

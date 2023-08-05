@@ -1,1 +1,18 @@
+.rdp-month{
+  background: #93d8e83d;
+  padding: 10px;
+  border-radius: 5px;
+}
 
+.rdp-day_selected{
+  background: #c9d3f0 !important;
+  color: black !important;
+  font-weight: bold !important;
+  border-radius: 3px !important;
+  transition: all .2s ease-in;
+} 
+
+.datepickerFooter{
+  font-size: 0.9rem;
+  font-weight: bold;
+}

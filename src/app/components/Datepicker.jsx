@@ -8,9 +8,9 @@ import "../../../public/styles/datepicker.css";
 function Datepicker() {
   const [selected, setSelected] = useState(null);
 
-  let footer = <p>Selecione uma data..</p>;
+  let footer = <p className="datepickerFooter">Selecione uma data..</p>;
   if (selected) {
-    footer = <p>Data selecionada: {format(selected, "PP")}.</p>;
+    footer = <p className="datepickerFooter">Data selecionada: {format(selected, "PP")}.</p>;
   }
 
   return (
