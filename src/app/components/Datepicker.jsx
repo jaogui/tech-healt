@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import {DayPicker} from "react-day-picker";
 import { ptBR } from 'date-fns/locale';
 import "../../../public/styles/datepicker.css";
+import "react-day-picker/dist/style.css";
 
 
 function Datepicker() {

@@ -5,12 +5,11 @@ function Notice({ titleNotice, descriptionNotice, idCheckbox, priority }) {
     background: priority
   }
 
-
   return (
     <label
       htmlFor={idCheckbox}
       style={styleNotices}
-      className="w-full border text-sm rounded-sm bg-slate-100 p-2 border-slate-200 flex gap-4 cursor-pointer"
+      className="w-full border text-sm rounded-sm bg-slate-100 p-2 border-slate-200 flex gap-4 cursor-pointer shadow-sm"
     >
       <input type="checkbox" id={idCheckbox} />
       <div className="flex flex-col text-sm">
