@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body, * {
   box-sizing: border-box;
+}
+
+.activeMenu {
+  background: #dfe3e9;
 }
 
 .status-indicator {
@@ -39,4 +45,31 @@ body, * {
 .SchedulingInfo-client:hover button{
   display: flex;
   transition: all 0.5s ease;
+}
+
+.slideFromRight {
+	-webkit-animation: fromRight 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.999) forwards;
+	        animation: fromRight 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.999) forwards;
+}
+
+
+@-webkit-keyframes fromRight {
+  0% {
+    -webkit-transform: translateX(-500px);
+            transform: translateX(-500px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+@keyframes fromRight {
+  0% {
+    -webkit-transform: translateX(-500px);
+            transform: translateX(-500px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
 }

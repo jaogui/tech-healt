@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ContentMain from "./components/ContentMain"
-import { ContextProvider } from "../app/ContextApp";
+import { ContextProvider } from "./utils/ContextApp";
 
 export default function Home() {
   return (

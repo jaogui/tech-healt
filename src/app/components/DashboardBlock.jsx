@@ -35,7 +35,7 @@ function DashboardBlock({
   return (
     <div
       style={stylesDashboardBlock}
-      className="w-full max-w-[370px] rounded-md border border-slate-200 h-[200px] p-5 flex flex-col justify-center gap-4 shadow-sm relative"
+      className="w-full max-w-[370px] rounded-md border border-slate-200 h-[200px] p-5 flex flex-col justify-center gap-4 shadow-sm relative font-Montserrat"
     >
       <span className="absolute top-2 right-2"> {renderIcon(iconName)}</span>
       <h4 className="uppercase flex items-center justify-between text-sm font-semibold">

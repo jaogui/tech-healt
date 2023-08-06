@@ -29,7 +29,7 @@ function SetAppointment({
           {appointmentDate}
         </button>
       </p>
-      <div className="flex gap-5 pt-2.5">
+      <div className="flex gap-4 pt-2.5">
         <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
           {setNew ? (
             <img

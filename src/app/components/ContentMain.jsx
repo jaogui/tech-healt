@@ -1,5 +1,5 @@
 import { React, useContext } from "react";
-import { contextApp } from "../ContextApp";
+import { contextApp } from "../utils/ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
 import Notice from "../components/Notice";
 import Datepicker from "../components/Datepicker";
@@ -16,15 +16,17 @@ function ContentMain() {
   };
 
   return (
-    <main className="px-9 py-6 bg-slate-100">
+    <main className="px-9 py-6">
       {contentView === "workflow" ? (
-        <section className="flex flex-col">
+        <section className="slideFromRight">
           <div className="py-1">
             <InputSeach />
           </div>
           <div className="flex flex-col gap-6">
             <div>
-              <h3 className="text-2xl py-4">Dashboard Info</h3>
+              <h3 className="text-2xl my-4 font-Montserrat border-b border-slate-300">
+                Dashboard Info
+              </h3>
               <div className="flex gap-4 py-2 flex-wrap">
                 <DashboardBlock
                   backgroundView="linear-gradient(288deg, #ffffff 29%, #6967de8d 93%)"
@@ -63,7 +65,7 @@ function ContentMain() {
             <div className="grid grid-flow-col grid-cols-1 w-full gap-5">
               <div className="flex gap-6 w-full">
                 <div className="w-full">
-                  <h3 className="text-xl py-3">Avisos</h3>
+                  <h3 className="text-xl py-3 font-Montserrat">Avisos</h3>
                   <div className="flex flex-col gap-4 w-full ">
                     <Notice
                       titleNotice="Aviso de solicitação"
@@ -88,22 +90,22 @@ function ContentMain() {
                       idCheckbox="warningAlter"
                       descriptionNotice="Luiz solicitou alteração da consulta para quarta-feira ás 16:30"
                     />
+                    <Notice
+                      titleNotice="Aviso de solicitação"
+                      idCheckbox="warningEdit2"
+                      descriptionNotice="Bruno confirmou agendamento de consulta."
+                    />
                   </div>
                 </div>
                 <div className="w-full">
-                  <h3 className="text-xl py-3">Lembretes</h3>
+                  <h3 className="text-xl py-3 font-Montserrat">Lembretes</h3>
                   <div className="flex flex-col w-full gap-4">
                     <Notice
                       titleNotice="Lembrete de consulta"
                       idCheckbox="reminderQuery"
                       descriptionNotice="Consulta ás 15:00 com Luciana."
                     />
-                    <Notice
-                      priority={`#de6767b5`}
-                      titleNotice="Lembrete de remarcação"
-                      idCheckbox="reminderInfo"
-                      descriptionNotice="Remarcar consulta com Vivian."
-                    />
+
                     <Notice
                       priority={`#67c8deb5`}
                       titleNotice="Lembrete de confirmação"
@@ -111,14 +113,15 @@ function ContentMain() {
                       descriptionNotice="Confirmar consulta do Luciano."
                     />
                     <Notice
-                      titleNotice="Lembrete de consulta"
-                      idCheckbox="reminderQuery2"
-                      descriptionNotice="Consulta ás 16:00 com Luciana."
-                    />
-                    <Notice
                       titleNotice="Lembrete de confirmação"
                       idCheckbox="reminderConfirm2"
                       descriptionNotice="Confirmar consulta do Bruno."
+                    />
+                    <Notice
+                      priority={`#67c8deb5`}
+                      titleNotice="Lembrete de confirmação"
+                      idCheckbox="warningEdit3"
+                      descriptionNotice="Marcela solicitou solicitou contato para remarcar a consulta"
                     />
                   </div>
                 </div>
@@ -131,10 +134,10 @@ function ContentMain() {
         </section>
       ) : null}
       {contentView === "routine" ? (
-        <section>
+        <section className="slideFromRight">
           <div className="flex w-full justify-between gap-6">
             <div className="w-full max-w-[550px]">
-              <h4 className="pb-4 text-lg">Médicos</h4>
+              <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
               <div className="flex flex-col gap-4">
                 <ProfileInfo
                   nameProfile="Dra. Renata"
@@ -160,7 +163,7 @@ function ContentMain() {
               </div>
             </div>
             <div className="w-full">
-              <h3 className="pb-4 text-lg">Agendamentos</h3>
+              <h3 className="pb-4 text-lg font-Montserrat">Agendamentos</h3>
               <div className="flex flex-col gap-4">
                 <SetAppointment
                   appointmentTime="09:00"
@@ -193,12 +196,12 @@ function ContentMain() {
         </section>
       ) : null}
       {contentView === "patients" ? (
-        <section>
+        <section className="slideFromRight">
           <div className="py-1">
             <InputSeach />
           </div>
-          <h3 className="text-2xl py-4 flex justify-between items-center">
-            Agendados
+          <h3 className="text-2xl my-4 flex justify-between items-center font-Montserrat border-b border-slate-300 ">
+            Consultas Agendadas
           </h3>
           <div className="flex gap-5 flex-wrap">
             <SchedulingInfo
@@ -269,7 +272,7 @@ function ContentMain() {
               clientName="Vinicius Cardozo"
               clientID="333.333.333-03"
               clienteDate="25/06/1979"
-              doctorName="Dra. Junior Balfini"
+              doctorName="Dr. Junior Balfini"
               doctorID="22222"
               doctorSpecialization="Dermatologista"
             />

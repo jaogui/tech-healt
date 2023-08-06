@@ -6,10 +6,9 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-      
-      },
+    fontFamily: {
+      Lato: ['Lato'],
+      Montserrat: ['Montserrat'],
     },
   },
   plugins: [],

@@ -3,7 +3,8 @@ import { createContext, useState, useEffect } from "react";
 const contextApp = createContext(null);
 
 function ContextProvider({children}) {
-  const [contentView, setContentView] = useState("patients")
+  const [contentView, setContentView] = useState("workflow")
+ 
   return (
     <contextApp.Provider 
       value={
