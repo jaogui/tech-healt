@@ -19,8 +19,8 @@ function SchedulingInfo({
   serviceInfo,
 }) {
   return (
-    <article className="w-full p-6 flex flex-col gap-3 rounded-md bg-slate-50 shadow-sm border border-slate-50 max-w-[350px]">
-      <div className="text-sm border-b border-zinc-200 pb-5 SchedulingInfo-client">
+    <article className="w-full p-4 flex flex-col rounded-md bg-slate-200 shadow-sm border border-slate-200 max-w-[350px]">
+      <div className="text-sm border-b border-zinc-300 pb-5 SchedulingInfo-client">
         <h4 className="text-lg font-semibold py-2 flex gap-2 items-center">
           Consulta
           <CalendarHeart size={20} />
@@ -51,8 +51,7 @@ function SchedulingInfo({
           </div>
         </div>
       </div>
-
-      <div className="text-sm border-b border-zinc-200 pb-5">
+      <div className="text-sm border-b border-zinc-300 pb-5">
         <h4 className="text-lg font-semibold py-2 flex gap-2 items-center">
           Paciente
           <PersonStanding size={20} />
@@ -72,7 +71,6 @@ function SchedulingInfo({
           </span>
         </div>
       </div>
-
       <div className="text-sm">
         <h4 className="text-lg font-semibold py-2 flex gap-2 items-center">
           Profissional
@@ -93,8 +91,6 @@ function SchedulingInfo({
           </span>
         </div>
       </div>
-
-      <div></div>
     </article>
   );
 }

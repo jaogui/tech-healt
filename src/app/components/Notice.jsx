@@ -9,7 +9,7 @@ function Notice({ titleNotice, descriptionNotice, idCheckbox, priority }) {
     <label
       htmlFor={idCheckbox}
       style={styleNotices}
-      className="w-full border text-sm rounded-sm bg-slate-100 p-2 border-slate-200 flex gap-4 cursor-pointer shadow-sm"
+      className="w-full border text-sm rounded-sm bg-slate-200 py-3 px-4 border-slate-200 flex gap-4 cursor-pointer shadow-sm"
     >
       <input type="checkbox" id={idCheckbox} />
       <div className="flex flex-col text-sm">

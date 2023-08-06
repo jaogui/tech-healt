@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 
 function InputSeach() {
   return (
-    <form className="max-w-[850px] relative">
+    <form className="max-w-[360px] relative">
       <input
         placeholder="Pesquisar"
         type="text"

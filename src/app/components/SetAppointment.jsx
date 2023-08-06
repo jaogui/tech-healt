@@ -11,8 +11,12 @@ import React from "react";
 
 function SetAppointment({
   appointmentTime,
-  patientName,
+  appointmentDate,
+  clientName,
+  clientID,
+  clientDate,
   appointmentDescription,
+  appointmentType,
   editAppointment,
   setNew,
 }) {
@@ -22,9 +26,10 @@ function SetAppointment({
         <button className="flex items-center gap-2">
           {appointmentTime}
           <Clock size={16} color="green" />
+          {appointmentDate}
         </button>
       </p>
-      <div className="flex items-center gap-5 pt-2">
+      <div className="flex gap-5 pt-2.5">
         <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
           {setNew ? (
             <img
@@ -35,14 +40,20 @@ function SetAppointment({
             <User2 size={20} />
           )}
         </div>
-        <span className="flex flex-col text-sm">
+        <div className="flex flex-col text-sm">
           {setNew ? (
-            <p className="font-semibold">{patientName}</p>
+            <span className="flex flex-col">
+              <p className="font-semibold">
+                {clientName} &#8226; {clientID}
+              </p>
+              <p className="font-semibold">{clientDate}</p>
+            </span>
           ) : (
             <p className="">Horário disponível</p>
           )}
           <p>{appointmentDescription}</p>
-        </span>
+          <p>{appointmentType}</p>
+        </div>
       </div>
       {setNew ? (
         <span className="flex items-center gap-4 pt-1 justify-end">
