@@ -1,5 +1,6 @@
 import React from "react";
-import { DollarSign, UserCheck, AlarmPlus, ScrollText } from "lucide-react";
+import { DollarSign, UserCheck, AlarmPlus, ScrollText, LabelInfo } from "lucide-react";
+import NumberCounter from '../utils/animates/NumberCounter'
 
 function DashboardBlock({
   title,
@@ -8,6 +9,7 @@ function DashboardBlock({
   backgroundView,
   description,
   iconName,
+  labelInfo
 }) {
   const stylesDashboardBlock = {
     background: backgroundView,
@@ -42,7 +44,10 @@ function DashboardBlock({
         {title}
       </h4>
       <article className="flex items-center gap-2">
-        <p className="text-4xl">{infoContentMain}</p>
+        <p>{labelInfo}</p>
+        <div className="text-4xl">
+          <NumberCounter endValue={infoContentMain} />
+          </div>
         <span className="text-sm">{infoContentSecondary}</span>
       </article>
       <span className="text-sm">{description}</span>

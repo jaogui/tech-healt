@@ -55,7 +55,8 @@ function ContentMain() {
                 <DashboardBlock
                   backgroundView="linear-gradient(288deg, #ffffff 29%, #8dde679d 93%)"
                   title="Faturamento"
-                  infoContentMain="R$: 15.800"
+                  labelInfo="R$"
+                  infoContentMain="800"
                   infoContentSecondary="Faturamento"
                   description="Faturamento dos cliente de hoje."
                   iconName="icon1"
