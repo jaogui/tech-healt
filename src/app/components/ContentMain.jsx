@@ -56,9 +56,9 @@ function ContentMain() {
                   backgroundView="linear-gradient(288deg, #ffffff 29%, #8dde679d 93%)"
                   title="Faturamento"
                   labelInfo="R$"
-                  infoContentMain="800"
+                  infoContentMain="800,00"
                   infoContentSecondary="Faturamento"
-                  description="Faturamento dos cliente de hoje."
+                  description="Faturamento dos clientes de hoje."
                   iconName="icon1"
                 />
               </div>
