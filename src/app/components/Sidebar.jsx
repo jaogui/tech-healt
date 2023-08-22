@@ -14,13 +14,13 @@ function Sidebar() {
        <p className="text-sm w-28 font-semibold">Tech Healt</p>
         </div>
       <ul className="text-xs font-semibold pt-5">
-        <li className={`w-full px-3`}>
+        <li className={`w-full px-3 mt-1`}>
          <button className={`py-3 px-3 rounded-xl w-full text-left uppercase hover:bg-slate-300 ${contentView === 'workflow' ? 'activeMenu'  : ''}`} onClick={() => setContentView('workflow')}>Fluxo de Trabalho</button>
         </li>
-        <li className="w-full px-3">
+        <li className="w-full px-3 mt-1">
          <button className={`py-3 px-3 rounded-xl w-full text-left uppercase hover:bg-slate-300 ${contentView === 'routine' ? 'activeMenu'  : ''}`} onClick={() => setContentView('routine')}>Agendamentos</button>
         </li>
-        <li className="w-full px-3">
+        <li className="w-full px-3 mt-1">
          <button className={`py-3 px-3 rounded-xl w-full text-left uppercase hover:bg-slate-300 ${contentView === 'patients' ? 'activeMenu'  : ''}`} onClick={() => setContentView('patients')}>Consultas</button>
         </li>
       </ul>
