@@ -51,25 +51,3 @@ body, * {
 	-webkit-animation: fromRight 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.999) forwards;
 	        animation: fromRight 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.999) forwards;
 }
-
-
-@-webkit-keyframes fromRight {
-  0% {
-    -webkit-transform: translateX(-500px);
-            transform: translateX(-500px);
-  }
-  100% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
-  }
-}
-@keyframes fromRight {
-  0% {
-    -webkit-transform: translateX(-500px);
-            transform: translateX(-500px);
-  }
-  100% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
-  }
-}
