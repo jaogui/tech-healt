@@ -2,9 +2,9 @@ import React from "react";
 import { XCircle } from "lucide-react";
 function ModalForm({ titleModal, descModal }) {
   return (
-    <div className="absolute top-0 right-0 bg-gray-900 h-screen w-screen z-10 opacity-90 ">
+    <div className="absolute top-0 right-0 bg-[rgba(37,45,59,0.7)] h-full w-full z-10">
       <div className="flex items-center justify-center h-full">
-        <div className="bg-white w-[585px] h-auto rounded-sm p-4 opacity-100">
+        <div className="bg-white w-[585px] h-auto rounded-sm p-5 opacity-100">
           <h2 className="text-xl py-1">{titleModal}</h2>
           <p className="text-sm text-zinc-500">{descModal}</p>
           <form className="w-full py-4">
@@ -22,19 +22,19 @@ function ModalForm({ titleModal, descModal }) {
               />
             </label>
             <label
-              htmlFor="dateMeeting"
+              htmlFor="cpfPatient"
               className="flex flex-col gap-1 text-sm py-2"
             >
-              Data da consulta:
+              CPF:
               <input
-                type="date"
-                placeholder="DD-MM-YYYY"
-                id="dateMeeting"
-                min="2023-01-01"
-                max="2024-06-10"
+                type="number"
+                name="cpf"
+                id="cpfPatient"
+                required
                 className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
               />
             </label>
+
             <label
               htmlFor="descPatient"
               className="flex flex-col gap-1 text-sm py-2"
@@ -46,8 +46,47 @@ function ModalForm({ titleModal, descModal }) {
                 cols="20"
                 rows="5"
                 className="resize-none bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
+                required
               />
             </label>
+
+            <div className="flex gap-4">
+              <label
+                htmlFor="dateMeeting"
+                className="flex flex-col gap-1 text-sm py-2"
+              >
+                Data da consulta:
+                <input
+                  type="date"
+                  placeholder="DD-MM-YYYY"
+                  id="dateMeeting"
+                  min="2023-01-01"
+                  max="2024-06-10"
+                  data-format="dd-mm-yyyy"
+                  required
+                  className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
+                />
+              </label>
+              <label
+                htmlFor="hourMeeting"
+                className="flex flex-col gap-1 text-sm py-2"
+              >
+                Horário da consulta:
+                <input
+                  type="time"
+                  min="09:00"
+                  max="17:00"
+                  placeholder="DD-MM-YYYY"
+                  id="hourMeeting"
+                  className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
+                  required
+                />
+              </label>
+            </div>
+            <span className="w-full pt-5 flex gap-2">
+                <button>Salvar</button>
+                <button>Cancelar</button>
+              </span>
           </form>
         </div>
       </div>
