@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   User2,
   ClipboardEdit,
@@ -7,7 +9,6 @@ import {
   CheckSquare,
   Clock,
 } from "lucide-react";
-import React from "react";
 
 function SetAppointment({
   appointmentTime,

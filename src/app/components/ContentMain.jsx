@@ -7,6 +7,7 @@ import InputSeach from "../components/InputSeach";
 import ProfileInfo from "../components/ProfileInfo";
 import SetAppointment from "../components/SetAppointment";
 import SchedulingInfo from "../components/SchedulingInfo";
+import ModalForm from '../components/ModalForm'
 
 function ContentMain() {
   const { contentView } = useContext(contextApp);
@@ -106,7 +107,6 @@ function ContentMain() {
                       idCheckbox="reminderQuery"
                       descriptionNotice="Consulta ás 15:00 com Luciana."
                     />
-
                     <Notice
                       priority={`#67c8deb5`}
                       titleNotice="Lembrete de confirmação"
@@ -135,6 +135,11 @@ function ContentMain() {
         </section>
       ) : null}
       {contentView === "routine" ? (
+        <>
+        <ModalForm 
+          titleModal="Adicionar um novo agendamento"
+          descModal="Preencha o formulário para marcar um novo horário"
+          />
         <section className="slideFromRight">
           <div className="flex w-full justify-between gap-6">
             <div className="w-full max-w-[550px]">
@@ -195,6 +200,7 @@ function ContentMain() {
             </div>
           </div>
         </section>
+        </>
       ) : null}
       {contentView === "patients" ? (
         <section className="slideFromRight">
