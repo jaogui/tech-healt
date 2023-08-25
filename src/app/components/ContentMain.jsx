@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import { contextApp } from "../utils/ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
 import Notice from "../components/Notice";
@@ -7,7 +7,6 @@ import InputSeach from "../components/InputSeach";
 import ProfileInfo from "../components/ProfileInfo";
 import SetAppointment from "../components/SetAppointment";
 import SchedulingInfo from "../components/SchedulingInfo";
-import ModalForm from '../components/ModalForm'
 
 function ContentMain() {
   const { contentView } = useContext(contextApp);
@@ -135,72 +134,66 @@ function ContentMain() {
         </section>
       ) : null}
       {contentView === "routine" ? (
-        <>
-        <ModalForm 
-          titleModal="Adicionar um novo agendamento"
-          descModal="Preencha o formulário para marcar um novo horário"
-          />
-        <section className="slideFromRight">
-          <div className="flex w-full justify-between gap-6">
-            <div className="w-full max-w-[550px]">
-              <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
-              <div className="flex flex-col gap-4">
-                <ProfileInfo
-                  nameProfile="Dra. Renata"
-                  company="MedBrasil"
-                  specialization="Pediatria"
-                  status="Atendendo"
-                />
-                <ProfileInfo
-                  nameProfile="Dr. Robson"
-                  company="MedBrasil"
-                  specialization="Fisioterapia"
-                  status="Disponível"
-                />
-                <ProfileInfo
-                  nameProfile="Dra. Bruna"
-                  company="MedBrasil"
-                  specialization="Psicologia"
-                  status="Ausente"
-                />
+          <section className="slideFromRight">
+            <div className="flex w-full justify-between gap-6">
+              <div className="w-full max-w-[550px]">
+                <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
+                <div className="flex flex-col gap-4">
+                  <ProfileInfo
+                    nameProfile="Dra. Renata"
+                    company="MedBrasil"
+                    specialization="Pediatria"
+                    status="Atendendo"
+                  />
+                  <ProfileInfo
+                    nameProfile="Dr. Robson"
+                    company="MedBrasil"
+                    specialization="Fisioterapia"
+                    status="Disponível"
+                  />
+                  <ProfileInfo
+                    nameProfile="Dra. Bruna"
+                    company="MedBrasil"
+                    specialization="Psicologia"
+                    status="Ausente"
+                  />
+                </div>
+                <div className="flex flex-col w-full pt-5 ">
+                  <Datepicker style={customDatePickerStyle} />
+                </div>
               </div>
-              <div className="flex flex-col w-full pt-5 ">
-                <Datepicker style={customDatePickerStyle} />
-              </div>
-            </div>
-            <div className="w-full">
-              <h3 className="pb-4 text-lg font-Montserrat">Agendamentos</h3>
-              <div className="flex flex-col gap-4">
-                <SetAppointment
-                  appointmentTime="09:00"
-                  appointmentDate="07/08/2023"
-                  clientName="João Guilherme Benine"
-                  clientID="555.555.555-10"
-                  appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
-                  appointmentType="Realização de exame radiográfico."
-                  setNew={true}
-                />
-                <SetAppointment
-                  appointmentTime="12:00"
-                  appointmentDate="07/08/2023"
-                />
-                <SetAppointment
-                  appointmentTime="15:00"
-                  appointmentDate="07/08/2023"
-                />
-                <SetAppointment
-                  appointmentTime="16:00"
-                  appointmentDate="07/08/2023"
-                />
-                <SetAppointment
-                  appointmentTime="17:00"
-                  appointmentDate="07/08/2023"
-                />
+              <div className="w-full">
+                <h3 className="pb-4 text-lg font-Montserrat">Agendamentos</h3>
+                <div className="flex flex-col gap-4">
+                  <SetAppointment
+                    appointmentTime="09:00"
+                    appointmentDate="07/08/2023"
+                    clientName="João Guilherme Benine"
+                    clientID="555.555.555-10"
+                    appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
+                    appointmentType="Realização de exame radiográfico."
+                    setNew={true}
+                  />
+                  <SetAppointment
+                    appointmentTime="12:00"
+                    appointmentDate="07/08/2023"
+                  />
+                  <SetAppointment
+                    appointmentTime="15:00"
+                    appointmentDate="07/08/2023"
+                  />
+                  <SetAppointment
+                    appointmentTime="16:00"
+                    appointmentDate="07/08/2023"
+                  />
+                  <SetAppointment
+                    appointmentTime="17:00"
+                    appointmentDate="07/08/2023"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-        </>
+          </section>
       ) : null}
       {contentView === "patients" ? (
         <section className="slideFromRight">

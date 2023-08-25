@@ -1,10 +1,12 @@
 import React from "react";
 import { XCircle } from "lucide-react";
-function ModalForm({ titleModal, descModal }) {
+
+function ModalForm({ titleModal, descModal, openModal, closeModal }) {
+
   return (
     <div className="absolute top-0 right-0 bg-[rgba(37,45,59,0.7)] h-full w-full z-10">
       <div className="flex items-center justify-center h-full">
-        <div className="bg-white w-[585px] h-auto rounded-sm p-5 opacity-100">
+        <div className="bg-white w-[585px] h-auto rounded-sm p-5 opacity-100 relative">
           <h2 className="text-xl py-1">{titleModal}</h2>
           <p className="text-sm text-zinc-500">{descModal}</p>
           <form className="w-full py-4">
@@ -83,10 +85,17 @@ function ModalForm({ titleModal, descModal }) {
                 />
               </label>
             </div>
-            <span className="w-full pt-5 flex gap-2">
-                <button>Salvar</button>
-                <button>Cancelar</button>
-              </span>
+            <div className="w-full pt-5 flex gap-2 justify-end">
+              <button className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-sky-200">
+                Salvar
+              </button>
+              <button className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-red-300" onClick={closeModal}>
+                Cancelar
+              </button>
+            </div>
+            <button className="absolute top-2 right-2" onClick={closeModal}>
+              <XCircle size={25} />
+            </button>
           </form>
         </div>
       </div>
