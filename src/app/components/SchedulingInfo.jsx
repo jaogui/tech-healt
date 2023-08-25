@@ -6,18 +6,18 @@ import {
   Pencil,
 } from "lucide-react";
 
-function SchedulingInfo({
-  clientName,
-  clientID,
-  clienteDate,
-  doctorName,
-  doctorID,
-  doctorSpecialization,
-  serviceValue,
-  serviceDate,
-  serviceTime,
-  serviceInfo,
-}) {
+function SchedulingInfo({ clientName, clientID, clienteDate, doctorName, doctorID, doctorSpecialization, serviceValue, serviceDate, serviceTime, serviceInfo,}) {
+  const [infoDate, setInfoDate] = React.useState(clienteDate);
+  const [isEditable, setIsEditable] = React.useState(false);
+  // const [infoHour, setInfoHour] = React.useState();
+  // const [infoValue, setInfoValue] = React.useState();
+
+
+  function handleEditable(){
+    setIsEditable(true);
+  }
+
+
   return (
     <article className="w-full p-4 flex flex-col rounded-md bg-slate-200 shadow-sm border border-slate-200 max-w-[350px]">
       <div className="text-sm border-b border-zinc-300 pb-5 SchedulingInfo-client">
@@ -30,12 +30,25 @@ function SchedulingInfo({
             Tipo de consulta:
             <p className="font-semibold">{serviceInfo}</p>
           </span>
-          <div className="flex gap-2">
-            <div className="flex gap-2 items-center">
-              <span>Data:</span>
-              <p className="font-semibold">{serviceDate}</p>-
-              <p className="font-semibold">{serviceTime}</p>
-            </div>
+          <div className="flex gap-2 items-center">
+            <span>Data:</span>
+            <input
+              className="font-semibold max-w-[80px] bg-slate-200"
+              type="text"
+              defaultValue={infoDate}
+              readOnly={!isEditable}
+            />
+            <button>
+              <Pencil size={15} color="green" onClick={handleEditable} />
+            </button>
+          </div>
+          <div className="flex gap-2 items-center">
+            <span>Horário:</span>
+            <input
+              className="font-semibold max-w-[50px] bg-slate-200"
+              type="text"
+              defaultValue={serviceTime}
+            />
             <button>
               <Pencil size={15} color="green" />
             </button>

@@ -4,7 +4,7 @@ import { XCircle } from "lucide-react";
 function ModalForm({ titleModal, descModal, openModal, closeModal }) {
 
   return (
-    <div className="absolute top-0 right-0 bg-[rgba(37,45,59,0.7)] h-full w-full z-10">
+    <div className="fixed top-0 right-0 bg-[rgba(37,45,59,0.7)] h-screen w-full z-50">
       <div className="flex items-center justify-center h-full">
         <div className="bg-white w-[585px] h-auto rounded-sm p-5 opacity-100 relative">
           <h2 className="text-xl py-1">{titleModal}</h2>
