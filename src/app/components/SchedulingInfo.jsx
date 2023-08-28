@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   CalendarHeart,
   HeartPulse,
@@ -19,7 +19,6 @@ function SchedulingInfo({
   serviceInfo,
 }) {
   const [isEditable, setIsEditable] = React.useState({});
-
   const refs = {
     infoDate: React.useRef(null),
     infoTime: React.useRef(null),
@@ -35,10 +34,31 @@ function SchedulingInfo({
   }
 
   const initValues = {
-    infoDate: '10/10/2023',
-    infoTime: '15:00',
-    infoPrice: '50,00'
-  }
+    infoDate: "10/10/2023",
+    infoTime: "15:00",
+    infoPrice: "50,00",
+  };
+
+  const [valuesInfo, setValuesInfo] = React.useState(initValues);
+
+  useEffect(() => {
+    const savedValues = JSON.parse(localStorage.getItem('infoAppointment'));
+    if (savedValues) {
+      setValuesInfo(savedValues);
+    }
+  }, []);
+
+
+  function handleInfoChange(field, value){
+    setValuesInfo((prevValues) => ({
+      ...prevValues,
+      [field]: value,
+    }));
+  };
+
+  useEffect(()=>{
+    localStorage.setItem('infoAppointment', JSON.stringify(valuesInfo));
+  },[valuesInfo])
 
   return (
     <article className="w-full p-4 flex flex-col rounded-md bg-slate-200 shadow-sm border border-slate-200 max-w-[350px]">
@@ -58,9 +78,10 @@ function SchedulingInfo({
               <input
                 className="font-semibold max-w-[80px] bg-slate-200 pl-1"
                 type="text"
-                defaultValue={initValues.infoDate}
+                defaultValue={valuesInfo.infoDate}
                 readOnly={!isEditable.infoDate}
                 ref={refs.infoDate}
+                onChange={(e) => handleInfoChange('infoDate', e.target.value)}
               />
             </span>
             <button onClick={() => alterInfo("infoDate")}>
@@ -74,11 +95,11 @@ function SchedulingInfo({
                 className="font-semibold max-w-[50px] bg-slate-200 pl-1"
                 type="text"
                 readOnly={!isEditable.infoTime}
-                defaultValue={initValues.infoTime}
+                defaultValue={valuesInfo.infoTime}
                 ref={refs.infoTime}
+                onChange={(e) => handleInfoChange('infoTime', e.target.value)}
               />
             </span>
-
             <button onClick={() => alterInfo("infoTime")}>
               <Pencil size={15} color="green" />
             </button>
@@ -91,8 +112,9 @@ function SchedulingInfo({
                   className="font-semibold max-w-[50px] bg-slate-200 pl-1"
                   type="text"
                   readOnly={!isEditable.infoPrice}
-                  defaultValue={initValues.infoPrice}
+                  defaultValue={valuesInfo.infoPrice}
                   ref={refs.infoPrice}
+                  onChange={(e) => handleInfoChange('infoPrice', e.target.value)}
                 />
               </span>
             </div>
