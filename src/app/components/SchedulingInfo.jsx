@@ -18,9 +18,6 @@ function SchedulingInfo({
   serviceTime,
   serviceInfo,
 }) {
-  const [infoDate, setInfoDate] = React.useState("17/10/2023");
-  const [infoTime, setInfoTime] = React.useState("12:00");
-  const [infoPrice, setInfoPrice] = React.useState("50,00");
   const [isEditable, setIsEditable] = React.useState({});
 
   const refs = {
@@ -35,6 +32,12 @@ function SchedulingInfo({
       [field]: true,
     }));
     refs[field].current.focus();
+  }
+
+  const initValues = {
+    infoDate: '10/10/2023',
+    infoTime: '15:00',
+    infoPrice: '50,00'
   }
 
   return (
@@ -55,7 +58,7 @@ function SchedulingInfo({
               <input
                 className="font-semibold max-w-[80px] bg-slate-200 pl-1"
                 type="text"
-                defaultValue={infoDate}
+                defaultValue={initValues.infoDate}
                 readOnly={!isEditable.infoDate}
                 ref={refs.infoDate}
               />
@@ -71,7 +74,7 @@ function SchedulingInfo({
                 className="font-semibold max-w-[50px] bg-slate-200 pl-1"
                 type="text"
                 readOnly={!isEditable.infoTime}
-                defaultValue={infoTime}
+                defaultValue={initValues.infoTime}
                 ref={refs.infoTime}
               />
             </span>
@@ -88,7 +91,7 @@ function SchedulingInfo({
                   className="font-semibold max-w-[50px] bg-slate-200 pl-1"
                   type="text"
                   readOnly={!isEditable.infoPrice}
-                  defaultValue={`${infoPrice}`}
+                  defaultValue={initValues.infoPrice}
                   ref={refs.infoPrice}
                 />
               </span>
