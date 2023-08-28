@@ -211,7 +211,7 @@ function ContentMain() {
               serviceValue="R$: 50,00"
               clientName="Vitor Luiz Almeida"
               clientID="099.999.999-01"
-              clienteDate="25/06/1982"
+              // clienteDate="25/06/1982"
               doctorName="Dra. Renata"
               doctorID="123456"
               doctorSpecialization="Fisioterapeuta"

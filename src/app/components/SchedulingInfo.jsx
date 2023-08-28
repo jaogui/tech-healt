@@ -7,15 +7,30 @@ import {
 } from "lucide-react";
 
 function SchedulingInfo({ clientName, clientID, clienteDate, doctorName, doctorID, doctorSpecialization, serviceValue, serviceDate, serviceTime, serviceInfo,}) {
-  const [infoDate, setInfoDate] = React.useState(clienteDate);
+  const [infoDate, setInfoDate] = React.useState('');
   const [isEditable, setIsEditable] = React.useState(false);
   // const [infoHour, setInfoHour] = React.useState();
   // const [infoValue, setInfoValue] = React.useState();
 
+  const inputRef = React.useRef(null)
 
-  function handleEditable(){
+  function alterInfo(){
     setIsEditable(true);
+    inputRef.current.focus();
   }
+
+  function handleInfo(event){
+      setInfoDate(event.target.value);
+      event.target.focus();
+  }
+
+  React.useEffect(()=>{
+    const saveInfo = localStorage.getItem('infoDate');
+    if(saveInfo){
+      setInfoDate(saveInfo)
+    }
+    localStorage.setItem('infoDate', infoDate)
+  },[infoDate])
 
 
   return (
@@ -37,9 +52,11 @@ function SchedulingInfo({ clientName, clientID, clienteDate, doctorName, doctorI
               type="text"
               defaultValue={infoDate}
               readOnly={!isEditable}
+              onChange={handleInfo}
+              ref={inputRef}
             />
             <button>
-              <Pencil size={15} color="green" onClick={handleEditable} />
+              <Pencil size={15} color="green" onClick={alterInfo} />
             </button>
           </div>
           <div className="flex gap-2 items-center">
