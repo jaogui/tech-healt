@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   CalendarHeart,
   HeartPulse,
@@ -13,33 +13,14 @@ function SchedulingInfo({
   doctorName,
   doctorID,
   doctorSpecialization,
-  serviceValue,
-  serviceDate,
-  serviceTime,
   serviceInfo,
 }) {
-  const [isEditable, setIsEditable] = React.useState({});
-  const refs = {
-    infoDate: React.useRef(null),
-    infoTime: React.useRef(null),
-    infoPrice: React.useRef(null),
-  };
-
-  function alterInfo(field) {
-    setIsEditable((prevState) => ({
-      ...prevState,
-      [field]: true,
-    }));
-    refs[field].current.focus();
-  }
-
-  const initValues = {
+  const [isEditable, setIsEditable] = useState({});
+  const [valuesInfo, setValuesInfo] = useState({
     infoDate: "10/10/2023",
     infoTime: "15:00",
     infoPrice: "50,00",
-  };
-
-  const [valuesInfo, setValuesInfo] = React.useState(initValues);
+  });
 
   useEffect(() => {
     const savedValues = JSON.parse(localStorage.getItem('infoAppointment'));
@@ -47,7 +28,6 @@ function SchedulingInfo({
       setValuesInfo(savedValues);
     }
   }, []);
-
 
   function handleInfoChange(field, value){
     setValuesInfo((prevValues) => ({
@@ -59,6 +39,20 @@ function SchedulingInfo({
   useEffect(()=>{
     localStorage.setItem('infoAppointment', JSON.stringify(valuesInfo));
   },[valuesInfo])
+
+  const refs = {
+    infoDate: useRef(null),
+    infoTime: useRef(null),
+    infoPrice: useRef(null),
+  };
+
+  function alterInput(field) {
+    setIsEditable((prevState) => ({
+      ...prevState,
+      [field]: true,
+    }));
+    refs[field].current.focus();
+  }
 
   return (
     <article className="w-full p-4 flex flex-col rounded-md bg-slate-200 shadow-sm border border-slate-200 max-w-[350px]">
@@ -76,7 +70,7 @@ function SchedulingInfo({
             <span>
               Data:
               <input
-                className="font-semibold max-w-[80px] bg-slate-200 pl-1"
+                className="font-semibold max-w-[100px] bg-slate-200 ml-0.5 pl-1 focus:outline-none focus:bg-slate-300"
                 type="text"
                 defaultValue={valuesInfo.infoDate}
                 readOnly={!isEditable.infoDate}
@@ -84,7 +78,7 @@ function SchedulingInfo({
                 onChange={(e) => handleInfoChange('infoDate', e.target.value)}
               />
             </span>
-            <button onClick={() => alterInfo("infoDate")}>
+            <button onClick={() => alterInput("infoDate")}>
               <Pencil size={15} color="green" />
             </button>
           </div>
@@ -92,7 +86,7 @@ function SchedulingInfo({
             <span>
               Horário:
               <input
-                className="font-semibold max-w-[50px] bg-slate-200 pl-1"
+                className="font-semibold max-w-[80px] bg-slate-200 ml-0.5 pl-1 focus:outline-none focus:bg-slate-300"
                 type="text"
                 readOnly={!isEditable.infoTime}
                 defaultValue={valuesInfo.infoTime}
@@ -100,7 +94,7 @@ function SchedulingInfo({
                 onChange={(e) => handleInfoChange('infoTime', e.target.value)}
               />
             </span>
-            <button onClick={() => alterInfo("infoTime")}>
+            <button onClick={() => alterInput("infoTime")}>
               <Pencil size={15} color="green" />
             </button>
           </div>
@@ -109,7 +103,7 @@ function SchedulingInfo({
               <span>
                 Cobrança:
                 <input
-                  className="font-semibold max-w-[50px] bg-slate-200 pl-1"
+                  className="font-semibold max-w-[80px] bg-slate-200 ml-0.5 pl-1 focus:outline-none focus:bg-slate-300"
                   type="text"
                   readOnly={!isEditable.infoPrice}
                   defaultValue={valuesInfo.infoPrice}
@@ -118,7 +112,7 @@ function SchedulingInfo({
                 />
               </span>
             </div>
-            <button onClick={() => alterInfo("infoPrice")}>
+            <button onClick={() => alterInput("infoPrice")}>
               <Pencil size={15} color="green" />
             </button>
           </div>

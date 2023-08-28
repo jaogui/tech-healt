@@ -1,4 +1,4 @@
-import { React, useContext, useState } from "react";
+import { React, useContext } from "react";
 import { contextApp } from "../utils/ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
 import Notice from "../components/Notice";
@@ -206,12 +206,8 @@ function ContentMain() {
           <div className="flex gap-5 flex-wrap">
             <SchedulingInfo
               serviceInfo="Avaliação"
-              serviceDate="10/08/2023"
-              serviceTime="10:00"
-              serviceValue="R$: 50,00"
               clientName="Vitor Luiz Almeida"
               clientID="099.999.999-01"
-              // clienteDate="25/06/1982"
               doctorName="Dra. Renata"
               doctorID="123456"
               doctorSpecialization="Fisioterapeuta"
