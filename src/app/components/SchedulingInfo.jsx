@@ -6,32 +6,36 @@ import {
   Pencil,
 } from "lucide-react";
 
-function SchedulingInfo({ clientName, clientID, clienteDate, doctorName, doctorID, doctorSpecialization, serviceValue, serviceDate, serviceTime, serviceInfo,}) {
-  const [infoDate, setInfoDate] = React.useState('');
-  const [isEditable, setIsEditable] = React.useState(false);
-  // const [infoHour, setInfoHour] = React.useState();
-  // const [infoValue, setInfoValue] = React.useState();
+function SchedulingInfo({
+  clientName,
+  clientID,
+  clienteDate,
+  doctorName,
+  doctorID,
+  doctorSpecialization,
+  serviceValue,
+  serviceDate,
+  serviceTime,
+  serviceInfo,
+}) {
+  const [infoDate, setInfoDate] = React.useState("17/10/2023");
+  const [infoTime, setInfoTime] = React.useState("12:00");
+  const [infoPrice, setInfoPrice] = React.useState("50,00");
+  const [isEditable, setIsEditable] = React.useState({});
 
-  const inputRef = React.useRef(null)
+  const refs = {
+    infoDate: React.useRef(null),
+    infoTime: React.useRef(null),
+    infoPrice: React.useRef(null),
+  };
 
-  function alterInfo(){
-    setIsEditable(true);
-    inputRef.current.focus();
+  function alterInfo(field) {
+    setIsEditable((prevState) => ({
+      ...prevState,
+      [field]: true,
+    }));
+    refs[field].current.focus();
   }
-
-  function handleInfo(event){
-      setInfoDate(event.target.value);
-      event.target.focus();
-  }
-
-  React.useEffect(()=>{
-    const saveInfo = localStorage.getItem('infoDate');
-    if(saveInfo){
-      setInfoDate(saveInfo)
-    }
-    localStorage.setItem('infoDate', infoDate)
-  },[infoDate])
-
 
   return (
     <article className="w-full p-4 flex flex-col rounded-md bg-slate-200 shadow-sm border border-slate-200 max-w-[350px]">
@@ -45,37 +49,51 @@ function SchedulingInfo({ clientName, clientID, clienteDate, doctorName, doctorI
             Tipo de consulta:
             <p className="font-semibold">{serviceInfo}</p>
           </span>
-          <div className="flex gap-2 items-center">
-            <span>Data:</span>
-            <input
-              className="font-semibold max-w-[80px] bg-slate-200"
-              type="text"
-              defaultValue={infoDate}
-              readOnly={!isEditable}
-              onChange={handleInfo}
-              ref={inputRef}
-            />
-            <button>
-              <Pencil size={15} color="green" onClick={alterInfo} />
-            </button>
-          </div>
-          <div className="flex gap-2 items-center">
-            <span>Horário:</span>
-            <input
-              className="font-semibold max-w-[50px] bg-slate-200"
-              type="text"
-              defaultValue={serviceTime}
-            />
-            <button>
+          <div className="flex gap-2 items-center justify-between">
+            <span>
+              Data:
+              <input
+                className="font-semibold max-w-[80px] bg-slate-200 pl-1"
+                type="text"
+                defaultValue={infoDate}
+                readOnly={!isEditable.infoDate}
+                ref={refs.infoDate}
+              />
+            </span>
+            <button onClick={() => alterInfo("infoDate")}>
               <Pencil size={15} color="green" />
             </button>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center justify-between">
+            <span>
+              Horário:
+              <input
+                className="font-semibold max-w-[50px] bg-slate-200 pl-1"
+                type="text"
+                readOnly={!isEditable.infoTime}
+                defaultValue={infoTime}
+                ref={refs.infoTime}
+              />
+            </span>
+
+            <button onClick={() => alterInfo("infoTime")}>
+              <Pencil size={15} color="green" />
+            </button>
+          </div>
+          <div className="flex gap-2 justify-between">
             <div className="flex gap-2 items-center">
-              <span>Cobrança:</span>
-              <p className="font-semibold">{serviceValue}</p>
+              <span>
+                Cobrança:
+                <input
+                  className="font-semibold max-w-[50px] bg-slate-200 pl-1"
+                  type="text"
+                  readOnly={!isEditable.infoPrice}
+                  defaultValue={`${infoPrice}`}
+                  ref={refs.infoPrice}
+                />
+              </span>
             </div>
-            <button>
+            <button onClick={() => alterInfo("infoPrice")}>
               <Pencil size={15} color="green" />
             </button>
           </div>
