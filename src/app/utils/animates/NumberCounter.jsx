@@ -6,7 +6,7 @@ function NumberCounter({ endValue }) {
   const { number } = useSpring({
     number: valueRefactor,
     from: { number: 0 },
-    config: { duration: 1000 },
+    config: { duration: 1200 },
   });
 
   return (
