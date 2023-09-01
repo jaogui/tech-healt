@@ -6,7 +6,7 @@ import {
   Pencil,
 } from "lucide-react";
 
-function SchedulingInfo({
+function AppointmentInfo({
   clientName,
   clientID,
   clienteDate,
@@ -14,16 +14,14 @@ function SchedulingInfo({
   doctorID,
   doctorSpecialization,
   serviceInfo,
+  initialValues
 }) {
+
   const [isEditable, setIsEditable] = useState({});
-  const [valuesInfo, setValuesInfo] = useState({
-    infoDate: "10/10/2023",
-    infoTime: "15:00",
-    infoPrice: "50,00",
-  });
+  const [valuesInfo, setValuesInfo] = useState(initialValues);
 
   useEffect(() => {
-    const savedValues = JSON.parse(localStorage.getItem('infoAppointment'));
+    const savedValues = JSON.parse(localStorage.getItem(`infoAppointment${doctorID}`));
     if (savedValues) {
       setValuesInfo(savedValues);
     }
@@ -37,8 +35,8 @@ function SchedulingInfo({
   };
 
   useEffect(()=>{
-    localStorage.setItem('infoAppointment', JSON.stringify(valuesInfo));
-  },[valuesInfo])
+    localStorage.setItem(`infoAppointment${doctorID}`, JSON.stringify(valuesInfo));
+  },[valuesInfo, initialValues])
 
   const refs = {
     infoDate: useRef(null),
@@ -162,4 +160,4 @@ function SchedulingInfo({
   );
 }
 
-export default SchedulingInfo;
+export default AppointmentInfo;
