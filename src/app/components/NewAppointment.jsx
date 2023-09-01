@@ -10,7 +10,7 @@ import {
   Clock,
 } from "lucide-react";
 
-function SetAppointment({ appointmentTime, appointmentDate, clientName, clientID, clientDate, appointmentDescription, appointmentType, editAppointment, setNew}) {
+function NewAppointment({ appointmentTime, appointmentDate, clientName, clientID, clientDate, appointmentDescription, appointmentType, editAppointment, setNew}) {
   const [modalFormView, setModalFormView] = useState(false);
 
   function modalOpen() {
@@ -92,4 +92,4 @@ function SetAppointment({ appointmentTime, appointmentDate, clientName, clientID
   );
 }
 
-export default SetAppointment;
+export default NewAppointment;
