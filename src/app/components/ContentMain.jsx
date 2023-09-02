@@ -1,4 +1,4 @@
-import { React, useContext, useEffect, useState } from "react";
+import { React, useContext, useEffect } from "react";
 import { contextApp } from "../utils/ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
 import Notice from "../components/Notice";
@@ -9,9 +9,13 @@ import NewAppointment from "./NewAppointment";
 import AppointmentInfo from "./AppointmentInfo";
 
 function ContentMain() {
-  const { contentView } = useContext(contextApp);
-  // const [qtdNotice, setQtdNotice] = useState([]);
+  const { contentView, qtdNotice } = useContext(contextApp);
 
+  // useEffect(()=>{
+  //   console.log(qtdNotice)
+  // },[qtdNotice])
+
+  console.log(qtdNotice)
 
   return (
     <main className="px-9 py-6">
@@ -62,15 +66,16 @@ function ContentMain() {
               </div>
             </div>
             <div className="grid grid-flow-col grid-cols-1 w-full gap-5">
-              <div className="flex gap-6 w-full">
-                <div className="w-full">
-                  <h3 className="text-xl py-3 font-Montserrat">Avisos</h3>
+              <div className="flex flex-col w-full">
+                <h3 className="text-xl py-3 font-Montserrat">
+                  Avisos e Lembretes
+                </h3>
+                <div className="flex gap-2">
                   <div className="flex flex-col gap-4 w-full">
                     <Notice
                       titleNotice="Aviso de solicitação"
                       idCheckbox="warningEdit"
                       descriptionNotice="Luciano solicitou consulta para terça-feira, horário 12:20"
-           
                     />
                     <Notice
                       priority={`#67c8deb5`}
@@ -99,34 +104,6 @@ function ContentMain() {
                       titleNotice="Aviso de solicitação"
                       idCheckbox="warningEdit2"
                       descriptionNotice="Gabriel confirmou agendamento de consulta."
-                    />
-                 
-                  </div>
-                </div>
-                <div className="w-full">
-                  <h3 className="text-xl py-3 font-Montserrat">Lembretes</h3>
-                  <div className="flex flex-col w-full gap-4">
-                    <Notice
-                      titleNotice="Lembrete de consulta"
-                      idCheckbox="reminderQuery"
-                      descriptionNotice="Consulta ás 15:00 com Luciana."
-                    />
-                    <Notice
-                      priority={`#67c8deb5`}
-                      titleNotice="Lembrete de confirmação"
-                      idCheckbox="reminderConfirm"
-                      descriptionNotice="Confirmar consulta do Luciano."
-                    />
-                    <Notice
-                      titleNotice="Lembrete de confirmação"
-                      idCheckbox="reminderConfirm2"
-                      descriptionNotice="Confirmar consulta do Bruno."
-                    />
-                    <Notice
-                      priority={`#67c8deb5`}
-                      titleNotice="Lembrete de confirmação"
-                      idCheckbox="warningEdit3"
-                      descriptionNotice="Marcela solicitou solicitou contato para remarcar a consulta"
                     />
                   </div>
                 </div>
