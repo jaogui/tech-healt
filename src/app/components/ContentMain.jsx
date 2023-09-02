@@ -1,21 +1,62 @@
-import { React, useContext, useEffect } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { contextApp } from "../utils/ContextApp";
 import DashboardBlock from "../components/DashboardBlock";
-import Notice from "../components/Notice";
+import Notification from "./Notification";
 import Datepicker from "../components/Datepicker";
 import InputSeach from "../components/InputSeach";
 import ProfileInfo from "../components/ProfileInfo";
 import NewAppointment from "./NewAppointment";
 import AppointmentInfo from "./AppointmentInfo";
+import {Smile} from 'lucide-react'
 
 function ContentMain() {
-  const { contentView, qtdNotice } = useContext(contextApp);
+  const { contentView, qtdNotice, addNotice } = useContext(contextApp);
+  const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
-  // useEffect(()=>{
-  //   console.log(qtdNotice)
-  // },[qtdNotice])
+  useEffect(() => {
+    if (!initialNoticesAdded) {
+      const initialNotices = [
+        {
+          title: "Solicitação",
+          description: "Luciano solicitou consulta.",
+          id: "notification_1",
+        },
+        {
+          title: "Confirmação",
+          description: "Luciana confirmou horário.",
+          id: "notification_2",
+        },
+        {
+          title: "Alteração",
+          description: "Luciana alterou horário.",
+          id: "notification_3",
+        },
+        {
+          title: "Alteração",
+          description: "Luiz solicitou alterou consulta.",
+          id: "notification_4",
+        },
+        {
+          title: "Confirmação",
+          description: "Gabriel confirmou agendamento de consulta.",
+          id: "notification_5",
+        },
+        {
+          title: "Cancelamento",
+          description: "Gabriel cancelou consulta.",
+          id: "notification_6",
+        },
+      ];
 
-  console.log(qtdNotice)
+      // Adiciona notificaçoes ao contexto
+      if (qtdNotice.length === 0) {
+        initialNotices.forEach((notice) => {
+          addNotice(notice);
+        });
+        setInitialNoticesAdded(true);
+      }
+    }
+  }, [addNotice]);
 
   return (
     <main className="px-9 py-6">
@@ -72,39 +113,25 @@ function ContentMain() {
                 </h3>
                 <div className="flex gap-2">
                   <div className="flex flex-col gap-4 w-full">
-                    <Notice
-                      titleNotice="Aviso de solicitação"
-                      idCheckbox="warningEdit"
-                      descriptionNotice="Luciano solicitou consulta para terça-feira, horário 12:20"
-                    />
-                    <Notice
-                      priority={`#67c8deb5`}
-                      titleNotice="Aviso de confirmação"
-                      idCheckbox="warningConfirm"
-                      descriptionNotice="Luciana confirmou horário."
-                    />
-                    <Notice
-                      priority={`#de6767b5`}
-                      titleNotice="Aviso de cancelamento"
-                      idCheckbox="warningCancel"
-                      descriptionNotice="Vivian cancelou consulta."
-                    />
-                    <Notice
-                      priority={`#67c8deb5`}
-                      titleNotice="Aviso de alteração"
-                      idCheckbox="warningAlter"
-                      descriptionNotice="Luiz solicitou alteração da consulta para quarta-feira ás 16:30"
-                    />
-                    <Notice
-                      titleNotice="Aviso de solicitação"
-                      idCheckbox="warningEdit2"
-                      descriptionNotice="Bruno confirmou agendamento de consulta."
-                    />
-                    <Notice
-                      titleNotice="Aviso de solicitação"
-                      idCheckbox="warningEdit2"
-                      descriptionNotice="Gabriel confirmou agendamento de consulta."
-                    />
+                    {qtdNotice.length === 0 ? (
+                      <p className="font-Montserrat border-b font-sm flex gap-2 text-sky-800">
+                        Todas notificações foram visualizadas
+                        <Smile size={20}  />
+                      </p>
+                    ) : (
+                      <>
+                        <div className="flex flex-col gap-4 w-full">
+                          {qtdNotice.map((notice) => (
+                            <Notification
+                              key={notice.id}
+                              titleNotice={notice.title}
+                              idCheckbox={notice.id}
+                              descriptionNotice={notice.description}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

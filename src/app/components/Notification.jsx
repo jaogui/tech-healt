@@ -1,11 +1,11 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { contextApp } from "../utils/ContextApp";
 
-function Notice({ titleNotice, descriptionNotice, idCheckbox, priority }) {
+function Notification({ titleNotice, descriptionNotice, idCheckbox, priority }) {
   const [actionNotice, setActionNotice] = useState(true);
   const [noticeView, setNoticeView] = useState(true);
 
-  const { addNotice, removeNotice } = useContext(contextApp);
+  const { removeNotice } = useContext(contextApp);
 
   function handleNotice() {
     setNoticeView(false);
@@ -15,15 +15,6 @@ function Notice({ titleNotice, descriptionNotice, idCheckbox, priority }) {
       removeNotice(0);
     }, 800);
   }
-
-  //Adiciona noticia assim que renderizada
-  useEffect(() => {
-      addNotice({
-        title: titleNotice,
-        description: descriptionNotice,
-        id: idCheckbox,
-      });
-  }, []);
 
   return (
     <>
@@ -46,4 +37,4 @@ function Notice({ titleNotice, descriptionNotice, idCheckbox, priority }) {
   );
 }
 
-export default Notice;
+export default Notification;
