@@ -7,10 +7,10 @@ import InputSeach from "../components/InputSeach";
 import ProfileInfo from "../components/ProfileInfo";
 import NewAppointment from "./NewAppointment";
 import AppointmentInfo from "./AppointmentInfo";
-import {Smile} from 'lucide-react'
+import { Smile } from "lucide-react";
 
 function ContentMain() {
-  const { contentView, qtdNotice, addNotice } = useContext(contextApp);
+  const { contentView, qtdNotice, addNotice, formNewAppointment } = useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
   useEffect(() => {
@@ -57,6 +57,10 @@ function ContentMain() {
       }
     }
   }, [addNotice]);
+
+  useEffect(()=>{
+    console.log(formNewAppointment)
+  },[formNewAppointment])
 
   return (
     <main className="px-9 py-6">
@@ -116,7 +120,7 @@ function ContentMain() {
                     {qtdNotice.length === 0 ? (
                       <p className="font-Montserrat font-sm gap-2 text-sky-800 h-full flex justify-center items-center">
                         Todas notificações foram visualizadas
-                        <Smile size={20}  />
+                        <Smile size={20} />
                       </p>
                     ) : (
                       <>
@@ -198,7 +202,20 @@ function ContentMain() {
                   appointmentType="Realização de exame radiográfico."
                   setNew={true}
                 />
-                <NewAppointment
+
+                {formNewAppointment.length !== 0 ? (
+                  <NewAppointment
+                    appointmentTime="09:00"
+                    appointmentDate="07/08/2023"
+                    clientName="João Guilherme Benine"
+                    clientID="555.555.555-10"
+                    appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
+                    appointmentType="Realização de exame radiográfico."
+                    setNew={true}
+                  />
+                ) : null}
+
+                {/* <NewAppointment
                   appointmentTime="10:00"
                   appointmentDate="07/08/2023"
                   clientName="João Guilherme Benine"
@@ -215,8 +232,7 @@ function ContentMain() {
                   appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
                   appointmentType="Realização de exame radiográfico."
                   setNew={true}
-                />
-       
+                /> */}
               </div>
             </div>
           </div>

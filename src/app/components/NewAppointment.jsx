@@ -10,17 +10,13 @@ import {
   Clock,
 } from "lucide-react";
 
-function NewAppointment({ appointmentTime, appointmentDate, clientName, clientID, clientDate, appointmentDescription, appointmentType, editAppointment, setNew}) {
+function NewAppointment({ appointmentTime, appointmentDate, clientName, clientID, clientDate, appointmentDescription, appointmentType, editAppointment, setNew, dataAppointment}) {
   const [modalFormView, setModalFormView] = useState(false);
 
-  function modalOpen() {
-    setModalFormView(true);
+  function toggleModal() {
+    setModalFormView(!modalFormView);
   }
   
-  function modalClose() {
-    setModalFormView(false);
-  }
-
   return (
     <>
       {modalFormView && (
@@ -28,7 +24,7 @@ function NewAppointment({ appointmentTime, appointmentDate, clientName, clientID
           titleModal="Adicionar um novo agendamento"
           descModal="Preencha o formulário para marcar um novo horário"
           openModal={modalFormView}
-          closeModal={modalClose}
+          closeModal={toggleModal}
         />
       )}
       <article className="px-4 pt-3 pb-1.5 shadow-sm border border-neutral-200 bg-neutral-200 rounded-md">
@@ -83,7 +79,7 @@ function NewAppointment({ appointmentTime, appointmentDate, clientName, clientID
         ) : (
           <span className="flex items-center gap-4 pt-1 justify-end">
             <button>
-              <PlusCircle size={20} onClick={modalOpen} />
+              <PlusCircle size={20} onClick={toggleModal} />
             </button>
           </span>
         )}
