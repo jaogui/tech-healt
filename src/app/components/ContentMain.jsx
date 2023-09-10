@@ -70,7 +70,7 @@ function ContentMain() {
               <h3 className="text-2xl my-4 font-Montserrat border-b border-slate-300">
                 Dashboard Info
               </h3>
-              <div className="flex gap-4 py-2 flex-wrap">
+              <div className="flex gap-4 py-2">
                 <DashboardBlock
                   backgroundView="linear-gradient(288deg, #ffffff 29%, #6967de8d 93%)"
                   title="Agendamentos do dia"
@@ -111,10 +111,10 @@ function ContentMain() {
                 <h3 className="text-xl py-3 font-Montserrat">
                   Avisos e Lembretes
                 </h3>
-                <div className="flex gap-2">
+                <div className="flex gap-2 h-full">
                   <div className="flex flex-col gap-4 w-full">
                     {qtdNotice.length === 0 ? (
-                      <p className="font-Montserrat border-b font-sm flex gap-2 text-sky-800">
+                      <p className="font-Montserrat font-sm gap-2 text-sky-800 h-full flex justify-center items-center">
                         Todas notificações foram visualizadas
                         <Smile size={20}  />
                       </p>
@@ -216,24 +216,7 @@ function ContentMain() {
                   appointmentType="Realização de exame radiográfico."
                   setNew={true}
                 />
-                <NewAppointment
-                  appointmentTime="13:00"
-                  appointmentDate="07/08/2023"
-                  clientName="João Guilherme Benine"
-                  clientID="555.555.555-10"
-                  appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
-                  appointmentType="Realização de exame radiográfico."
-                  setNew={true}
-                />
-                <NewAppointment
-                  appointmentTime="14:00"
-                  appointmentDate="07/08/2023"
-                  clientName="João Guilherme Benine"
-                  clientID="555.555.555-10"
-                  appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
-                  appointmentType="Realização de exame radiográfico."
-                  setNew={true}
-                />
+       
               </div>
             </div>
           </div>
@@ -256,11 +239,6 @@ function ContentMain() {
               doctorName="Dra. Renata"
               doctorID="1111"
               doctorSpecialization="Fisioterapeuta"
-              initialValues={{
-                infoDate: "10/02/2023",
-                infoTime: "17:30",
-                infoPrice: "150,00",
-              }}
             />
             <AppointmentInfo
               serviceInfo="Avaliação"
@@ -269,11 +247,6 @@ function ContentMain() {
               doctorName="Dr. Luiz"
               doctorID="2222"
               doctorSpecialization="Clínico"
-              initialValues={{
-                infoDate: "10/10/2023",
-                infoTime: "15:04",
-                infoPrice: "50,00",
-              }}
             />
             <AppointmentInfo
               serviceInfo="Avaliação"
@@ -282,11 +255,6 @@ function ContentMain() {
               doctorName="Dr. Paulo"
               doctorID="4444"
               doctorSpecialization="Fisioterapeuta"
-              initialValues={{
-                infoDate: "05/06/2023",
-                infoTime: "15:10",
-                infoPrice: "70,00",
-              }}
             />
             <AppointmentInfo
               serviceInfo="Avaliação"
@@ -295,11 +263,6 @@ function ContentMain() {
               doctorName="Dr. Renato"
               doctorID="3333"
               doctorSpecialization="Ortopedista"
-              initialValues={{
-                infoDate: "13/11/2023",
-                infoTime: "16:00",
-                infoPrice: "85,00",
-              }}
             />
             <AppointmentInfo
               serviceInfo="Exame"
@@ -308,11 +271,6 @@ function ContentMain() {
               doctorName="Dr. José"
               doctorID="5555"
               doctorSpecialization="Ortopedista"
-              initialValues={{
-                infoDate: "19/07/2023",
-                infoTime: "10:40",
-                infoPrice: "65,00",
-              }}
             />
           </div>
         </section>
