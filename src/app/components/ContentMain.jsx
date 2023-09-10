@@ -14,6 +14,8 @@ function ContentMain() {
     useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
+
+  //Init notificações
   useEffect(() => {
     if (!initialNoticesAdded) {
       const initialNotices = [
@@ -58,10 +60,6 @@ function ContentMain() {
       }
     }
   }, [addNotice]);
-
-  useEffect(() => {
-    console.log(formNewAppointment);
-  }, [formNewAppointment]);
 
   return (
     <main className="px-9 py-6">
@@ -148,8 +146,7 @@ function ContentMain() {
         </section>
       ) : null}
       {contentView === "routine" ? (
-        <section className="slideFromRight">
-          <div className="flex w-full justify-between gap-6">
+          <section className="flex w-full justify-between gap-6">
             <div className="w-full max-w-[550px]">
               <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
               <div className="flex flex-col gap-4">
@@ -171,75 +168,51 @@ function ContentMain() {
                   specialization="Psicologia"
                   status="Ausente"
                 />
-              </div>
-              <div className="flex flex-col w-full pt-5 gap-4 ">
-                <NewAppointment
-                  appointmentTime="15:00"
-                  appointmentDate="07/08/2023"
+                <ProfileInfo
+                  nameProfile="Dra. Gabriel"
+                  company="MedBrasil"
+                  specialization="Psicologia"
+                  status="Ausente"
                 />
-                <NewAppointment
-                  appointmentTime="16:00"
-                  appointmentDate="07/08/2023"
-                />
-                <NewAppointment
-                  appointmentTime="17:00"
-                  appointmentDate="07/08/2023"
-                />
-                <NewAppointment
-                  appointmentTime="17:30"
-                  appointmentDate="07/08/2023"
+                <ProfileInfo
+                  nameProfile="Dra. Junior"
+                  company="MedBrasil"
+                  specialization="Psicologia"
+                  status="Disponível"
                 />
               </div>
             </div>
             <div className="w-full">
               <h3 className="pb-4 text-lg font-Montserrat">Agendamentos</h3>
-              <div className="flex flex-col gap-4">
-                <NewAppointment
-                  appointmentTime="09:00"
-                  appointmentDate="07/08/2023"
-                  clientName="João Guilherme Benine"
-                  clientID="555.555.555-10"
-                  appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
-                  appointmentType="Realização de exame radiográfico."
-                  setNew={true}
-                />
-
-                {/* {formNewAppointment.length !== 0 ? (
-                  <NewAppointment
-                    appointmentTime="09:00"
-                    appointmentDate="07/08/2023"
-                    clientName={formNewAppointment.Paciente}
-                    clientID={formNewAppointment.cpf}
-                    appointmentDescription={
-                      formNewAppointment.descAppointment
-                    }
-                    appointmentType="Realização de exame radiográfico."
-                    setNew={true}
+              <NewAppointment
+                    clientName="Nome do paciente"
+                    appointmentTime="--:--"
+                    appointmentDate="--/--/----"
                   />
-                ) : null} */}
-
-                {formNewAppointment.length !== 0
-                  ? formNewAppointment.map((appointmentInfo, index) => {
-                      return (
-                        <NewAppointment
-                          key={index}
-                          appointmentTime="09:00"
-                          appointmentDate="07/08/2023"
-                          clientName={appointmentInfo.Paciente}
-                          clientID={appointmentInfo.cpf}
-                          appointmentDescription={
-                            appointmentInfo.descAppointment
-                          }
-                          appointmentType="Realização de exame radiográfico."
-                          setNew={true}
-                        />
-                      );
-                    })
-                  : null}
+              <div className="flex flex-col gap-4">
+                {formNewAppointment.length !== 0 ? (
+                  formNewAppointment.map((appointmentInfo, index) => {
+                    return (
+                      <NewAppointment
+                        key={index}
+                        appointmentTime="09:00"
+                        appointmentDate="07/08/2023"
+                        clientName={appointmentInfo.Paciente}
+                        clientID={appointmentInfo.cpf}
+                        appointmentDescription={appointmentInfo.descAppointment}
+                        appointmentType="Realização de exame radiográfico."
+                        setNew={true}
+                      />
+                    );
+                  })
+                ) : (
+                  <p className="font-Montserrat text-sm gap-2 text-sky-800 h-full flex">
+                    Nenhum agendamento realizado.
+                  </p>
+                )}
               </div>
             </div>
-          </div>
-        </section>
+          </section>
       ) : null}
       {contentView === "patients" ? (
         <section className="slideFromRight">
@@ -249,7 +222,6 @@ function ContentMain() {
           <h3 className="text-2xl my-4 flex justify-between items-center font-Montserrat border-b border-slate-300 ">
             Consultas Agendadas
           </h3>
-
           <div className="flex gap-5 flex-wrap">
             <AppointmentInfo
               serviceInfo="Avaliação"
