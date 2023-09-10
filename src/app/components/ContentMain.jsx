@@ -239,6 +239,8 @@ function ContentMain() {
               doctorName="Dra. Renata"
               doctorID="1111"
               doctorSpecialization="Fisioterapeuta"
+              clientDate="26/07/1999"
+              data
             />
             <AppointmentInfo
               serviceInfo="Avaliação"
@@ -247,6 +249,7 @@ function ContentMain() {
               doctorName="Dr. Luiz"
               doctorID="2222"
               doctorSpecialization="Clínico"
+              clientDate="11/06/1895"
             />
             <AppointmentInfo
               serviceInfo="Avaliação"
@@ -255,14 +258,16 @@ function ContentMain() {
               doctorName="Dr. Paulo"
               doctorID="4444"
               doctorSpecialization="Fisioterapeuta"
+              clientDate="10/04/1980"
             />
             <AppointmentInfo
-              serviceInfo="Avaliação"
+              serviceInfo="Exame"
               clientName="Gabriel"
               clientID="099.999.741-01"
               doctorName="Dr. Renato"
               doctorID="3333"
               doctorSpecialization="Ortopedista"
+              clientDate="05/12/1972"
             />
             <AppointmentInfo
               serviceInfo="Exame"
@@ -271,6 +276,16 @@ function ContentMain() {
               doctorName="Dr. José"
               doctorID="5555"
               doctorSpecialization="Ortopedista"
+              clientDate="05/05/1980"
+            />
+            <AppointmentInfo
+              serviceInfo="Exame"
+              clientName="Jorge"
+              clientID="099.442.741-01"
+              doctorName="Dr. José"
+              doctorID="5555"
+              doctorSpecialization="Ortopedista"
+              clientDate="10/05/1980"
             />
           </div>
         </section>

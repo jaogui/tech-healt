@@ -61,3 +61,11 @@ body,
     opacity: 0;
   }
 }
+
+
+input[type="checkbox"]{
+  border: 1px solid red;
+  background: blue !important;
+  border-color: transparent;
+
+}

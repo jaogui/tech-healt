@@ -7,7 +7,7 @@ function Sidebar() {
   const {setContentView, contentView } = useContext(contextApp);
 
   return (
-    <nav className="min-w-[300px] bg-slate-50 border border-slate-200 shadow-sm font-Montserrat">
+    <nav className="min-w-[300px] min-h-screen bg-slate-50 border border-slate-200 shadow-sm font-Montserrat">
       <div className="h-[85px] flex flex-col px-6 gap-2 justify-center border-b border-slate-200"> 
         <div className="h-8 w-8 flex items-center justify-center rounded-sm bg-slate-400 shadow-xl"> 
          <Stethoscope size={25} color="#f3f3f3" />

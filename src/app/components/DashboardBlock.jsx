@@ -1,5 +1,5 @@
 import React from "react";
-import { DollarSign, UserCheck, AlarmPlus, ScrollText, LabelInfo } from "lucide-react";
+import { DollarSign, UserCheck, AlarmPlus, ScrollText } from "lucide-react";
 import NumberCounter from '../utils/animates/NumberCounter'
 
 function DashboardBlock({
