@@ -10,7 +10,8 @@ import AppointmentInfo from "./AppointmentInfo";
 import { Smile } from "lucide-react";
 
 function ContentMain() {
-  const { contentView, qtdNotice, addNotice, formNewAppointment } = useContext(contextApp);
+  const { contentView, qtdNotice, addNotice, formNewAppointment } =
+    useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
   useEffect(() => {
@@ -58,9 +59,9 @@ function ContentMain() {
     }
   }, [addNotice]);
 
-  useEffect(()=>{
-    console.log(formNewAppointment)
-  },[formNewAppointment])
+  useEffect(() => {
+    console.log(formNewAppointment);
+  }, [formNewAppointment]);
 
   return (
     <main className="px-9 py-6">
@@ -203,36 +204,38 @@ function ContentMain() {
                   setNew={true}
                 />
 
-                {formNewAppointment.length !== 0 ? (
+                {/* {formNewAppointment.length !== 0 ? (
                   <NewAppointment
                     appointmentTime="09:00"
                     appointmentDate="07/08/2023"
-                    clientName={formNewAppointment.formValues.Paciente}
-                    clientID={formNewAppointment.formValues.cpf}
-                    appointmentDescription={formNewAppointment.formValues.descPatient}
+                    clientName={formNewAppointment.Paciente}
+                    clientID={formNewAppointment.cpf}
+                    appointmentDescription={
+                      formNewAppointment.descAppointment
+                    }
                     appointmentType="Realização de exame radiográfico."
                     setNew={true}
                   />
-                ) : null}
+                ) : null} */}
 
-                {/* <NewAppointment
-                  appointmentTime="10:00"
-                  appointmentDate="07/08/2023"
-                  clientName="João Guilherme Benine"
-                  clientID="555.555.555-10"
-                  appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
-                  appointmentType="Realização de exame radiográfico."
-                  setNew={true}
-                />
-                <NewAppointment
-                  appointmentTime="12:00"
-                  appointmentDate="07/08/2023"
-                  clientName="João Guilherme Benine"
-                  clientID="555.555.555-10"
-                  appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
-                  appointmentType="Realização de exame radiográfico."
-                  setNew={true}
-                /> */}
+                {formNewAppointment.length !== 0
+                  ? formNewAppointment.map((appointmentInfo, index) => {
+                      return (
+                        <NewAppointment
+                          key={index}
+                          appointmentTime="09:00"
+                          appointmentDate="07/08/2023"
+                          clientName={appointmentInfo.Paciente}
+                          clientID={appointmentInfo.cpf}
+                          appointmentDescription={
+                            appointmentInfo.descAppointment
+                          }
+                          appointmentType="Realização de exame radiográfico."
+                          setNew={true}
+                        />
+                      );
+                    })
+                  : null}
               </div>
             </div>
           </div>

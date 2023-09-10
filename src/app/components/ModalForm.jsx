@@ -5,7 +5,6 @@ import { contextApp } from "../utils/ContextApp";
 function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const {formNewAppointment, setFormNewAppointment} = useContext(contextApp)
 
-
   function onSubmit(event){
     event.preventDefault();
     const valueInputs = document.querySelectorAll('input, textarea');
@@ -13,11 +12,12 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     valueInputs.forEach((input) => {
       formValues[input.name] = input.value;
     });
-    setFormNewAppointment({
+    setFormNewAppointment([
       ...formNewAppointment,
-      formValues
-    });
-    // closeModal();
+      {...formValues}
+    ]);
+    console.log(formValues)
+    closeModal();
   }
 
     return (
@@ -54,12 +54,12 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                 />
               </label>
               <label
-                htmlFor="descPatient"
+                htmlFor="descAppointment"
                 className="flex flex-col gap-1 text-sm py-2"
               >
                 Descrição da consulta:
                 <textarea
-                  name="descPatient"
+                  name="descAppointment"
                   id="descAppointment"
                   cols="20"
                   rows="5"
