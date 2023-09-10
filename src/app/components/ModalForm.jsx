@@ -20,7 +20,6 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     // closeModal();
   }
 
-
     return (
       <div className="fixed top-0 right-0 bg-[rgba(37,45,59,0.7)] h-screen w-full z-50">
         <div className="flex items-center justify-center h-full">
@@ -54,7 +53,6 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                   className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
                 />
               </label>
-
               <label
                 htmlFor="descPatient"
                 className="flex flex-col gap-1 text-sm py-2"
@@ -62,15 +60,13 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                 Descrição da consulta:
                 <textarea
                   name="descPatient"
-                  id="descPatient"
+                  id="descAppointment"
                   cols="20"
                   rows="5"
                   className="resize-none bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
                   required
                 />
               </label>
-
-        
               <div className="w-full pt-5 flex gap-2 justify-end">
                 <button className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-sky-200" onClick={onSubmit}>
                   Salvar

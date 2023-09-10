@@ -207,9 +207,9 @@ function ContentMain() {
                   <NewAppointment
                     appointmentTime="09:00"
                     appointmentDate="07/08/2023"
-                    clientName="João Guilherme Benine"
-                    clientID="555.555.555-10"
-                    appointmentDescription="Realização de avalição no consultório com Dr. Robson.. Solicitou documentos."
+                    clientName={formNewAppointment.formValues.Paciente}
+                    clientID={formNewAppointment.formValues.cpf}
+                    appointmentDescription={formNewAppointment.formValues.descPatient}
                     appointmentType="Realização de exame radiográfico."
                     setNew={true}
                   />
