@@ -9,7 +9,7 @@ import {
 function AppointmentInfo({
   clientName,
   clientID,
-  clienteDate,
+  clientDate,
   doctorName,
   doctorID,
   doctorSpecialization,
@@ -157,7 +157,7 @@ function AppointmentInfo({
               </span>
               <span className="flex gap-2">
                 Data de nascimento:
-                <p className="font-semibold">{clienteDate}</p>
+                <p className="font-semibold">{clientDate}</p>
               </span>
             </div>
           </div>

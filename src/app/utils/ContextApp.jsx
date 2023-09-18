@@ -1,10 +1,11 @@
-import { createContext, useState, useEffect } from "react"; 
+import { createContext, useState } from "react"; 
 
 const contextApp = createContext(null);
 
 function ContextProvider({children}) {
   const [contentView, setContentView] = useState("workflow")
   const [qtdNotice, setQtdNotice] = useState([]);
+  const [formNewAppointment, setFormNewAppointment] = useState([]);
 
   //Armazena todas as noticias/notificações dentro de um array visualizadas.
   function addNotice(notice){
@@ -21,7 +22,7 @@ function ContextProvider({children}) {
   return (
     <contextApp.Provider 
       value={
-        {contentView, setContentView, qtdNotice, addNotice, removeNotice}
+        {contentView, setContentView, qtdNotice, addNotice, removeNotice, formNewAppointment, setFormNewAppointment}
       }
     >
       {children}

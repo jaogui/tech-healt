@@ -1,7 +1,21 @@
-import React from "react";
+import { useContext } from "react";
 import { XCircle } from "lucide-react";
+import { contextApp } from "../utils/ContextApp";
 
 function ModalForm({ titleModal, descModal, openModal, closeModal }) {
+  const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
+
+  function onSubmit(event) {
+    event.preventDefault();
+    // window.location.href = '';
+    const valueInputs = document.querySelectorAll("input, textarea");
+    const formValues = {};
+    valueInputs.forEach((input) => {
+      formValues[input.name] = input.value;
+    });
+    setFormNewAppointment([...formNewAppointment, { ...formValues }]);
+    closeModal();
+  }
 
   return (
     <div className="fixed top-0 right-0 bg-[rgba(37,45,59,0.7)] h-screen w-full z-50">
@@ -29,67 +43,38 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
             >
               CPF:
               <input
-                type="number"
+                type="text"
                 name="cpf"
                 id="cpfPatient"
                 required
                 className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
               />
             </label>
-
             <label
-              htmlFor="descPatient"
+              htmlFor="descAppointment"
               className="flex flex-col gap-1 text-sm py-2"
             >
               Descrição da consulta:
               <textarea
-                name="descPatient"
-                id="descPatient"
+                name="descAppointment"
+                id="descAppointment"
                 cols="20"
                 rows="5"
                 className="resize-none bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
                 required
               />
             </label>
-
-            <div className="flex gap-4">
-              <label
-                htmlFor="dateMeeting"
-                className="flex flex-col gap-1 text-sm py-2"
-              >
-                Data da consulta:
-                <input
-                  type="date"
-                  placeholder="DD-MM-YYYY"
-                  id="dateMeeting"
-                  min="2023-01-01"
-                  max="2024-06-10"
-                  data-format="dd-mm-yyyy"
-                  required
-                  className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
-                />
-              </label>
-              <label
-                htmlFor="hourMeeting"
-                className="flex flex-col gap-1 text-sm py-2"
-              >
-                Horário da consulta:
-                <input
-                  type="time"
-                  min="09:00"
-                  max="17:00"
-                  placeholder="DD-MM-YYYY"
-                  id="hourMeeting"
-                  className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
-                  required
-                />
-              </label>
-            </div>
             <div className="w-full pt-5 flex gap-2 justify-end">
-              <button className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-sky-200">
+              <button
+                className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-sky-200"
+                onClick={onSubmit}
+              >
                 Salvar
               </button>
-              <button className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-red-300" onClick={closeModal}>
+              <button
+                className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-red-300"
+                onClick={closeModal}
+              >
                 Cancelar
               </button>
             </div>
@@ -102,5 +87,4 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     </div>
   );
 }
-
 export default ModalForm;

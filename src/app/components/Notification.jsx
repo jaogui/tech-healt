@@ -22,11 +22,11 @@ function Notification({ titleNotice, descriptionNotice, idCheckbox, priority }) 
         <label
           htmlFor={idCheckbox}
           style={{ background: priority }}
-          className={`w-full border text-sm rounded-sm bg-slate-200 py-3 px-4 border-slate-200 flex gap-4 cursor-pointer shadow-sm ${
+          className={`w-full border text-sm rounded-sm bg-slate-200 py-3 px-4 border-slate-200 flex items-center gap-4 cursor-pointer shadow-sm ${
             noticeView ? "" : "animateOpacity"
           }`}
         >
-          <input type="checkbox" id={idCheckbox} onChange={handleNotice} />
+          <input type="checkbox" id={idCheckbox} onChange={handleNotice} className="w-4 h-4 rounded-full" />
           <div className="flex flex-col text-sm">
             <p className="text-slate-800 font-semibold">{titleNotice}</p>
             <p className="">{descriptionNotice}</p>
