@@ -1,10 +1,9 @@
 import { fastify } from 'fastify'
+import { getAllNotifications } from './routes/get-notification'
 
 const app = fastify()
 
-app.get('/', () => {
-  return 'Server'
-})
+app.register(getAllNotifications)
 
 app.listen({
   port: 3333,

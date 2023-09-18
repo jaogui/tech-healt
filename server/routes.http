@@ -1,1 +1,3 @@
-GET http://localhost:3333
+
+# @name get-notifications
+GET http://localhost:3333/notifications 
