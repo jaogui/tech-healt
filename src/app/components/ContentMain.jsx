@@ -14,7 +14,6 @@ function ContentMain() {
     useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
-
   //Init notificações
   useEffect(() => {
     if (!initialNoticesAdded) {
@@ -146,73 +145,73 @@ function ContentMain() {
         </section>
       ) : null}
       {contentView === "routine" ? (
-          <section className="flex w-full justify-between gap-6">
-            <div className="w-full max-w-[550px]">
-              <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
-              <div className="flex flex-col gap-4">
-                <ProfileInfo
-                  nameProfile="Dra. Renata"
-                  company="MedBrasil"
-                  specialization="Pediatria"
-                  status="Atendendo"
-                />
-                <ProfileInfo
-                  nameProfile="Dr. Robson"
-                  company="MedBrasil"
-                  specialization="Fisioterapia"
-                  status="Disponível"
-                />
-                <ProfileInfo
-                  nameProfile="Dra. Bruna"
-                  company="MedBrasil"
-                  specialization="Psicologia"
-                  status="Ausente"
-                />
-                <ProfileInfo
-                  nameProfile="Dra. Gabriel"
-                  company="MedBrasil"
-                  specialization="Psicologia"
-                  status="Ausente"
-                />
-                <ProfileInfo
-                  nameProfile="Dra. Junior"
-                  company="MedBrasil"
-                  specialization="Psicologia"
-                  status="Disponível"
-                />
-              </div>
+        <section className="flex w-full justify-between gap-6">
+          <div className="w-full max-w-[550px]">
+            <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
+            <div className="flex flex-col gap-4">
+              <ProfileInfo
+                nameProfile="Dra. Renata"
+                company="MedBrasil"
+                specialization="Pediatria"
+                status="Atendendo"
+              />
+              <ProfileInfo
+                nameProfile="Dr. Robson"
+                company="MedBrasil"
+                specialization="Fisioterapia"
+                status="Disponível"
+              />
+              <ProfileInfo
+                nameProfile="Dra. Bruna"
+                company="MedBrasil"
+                specialization="Psicologia"
+                status="Ausente"
+              />
+              <ProfileInfo
+                nameProfile="Dra. Gabriel"
+                company="MedBrasil"
+                specialization="Psicologia"
+                status="Ausente"
+              />
+              <ProfileInfo
+                nameProfile="Dra. Junior"
+                company="MedBrasil"
+                specialization="Psicologia"
+                status="Disponível"
+              />
             </div>
-            <div className="w-full">
-              <h3 className="pb-4 text-lg font-Montserrat">Agendamentos</h3>
-              <NewAppointment
-                    clientName="Nome do paciente"
-                    appointmentTime="--:--"
-                    appointmentDate="--/--/----"
-                  />
-              <div className="flex flex-col gap-4">
-                {formNewAppointment.length !== 0 ? (
-                  formNewAppointment.map((appointmentInfo, index) => {
-                    return (
-                      <NewAppointment
-                        key={index}
-                        appointmentTime="09:00"
-                        appointmentDate="07/08/2023"
-                        clientName={appointmentInfo.Paciente}
-                        clientID={appointmentInfo.cpf}
-                        appointmentDescription={appointmentInfo.descAppointment}
-                        appointmentType="Realização de exame radiográfico."
-                        setNew={true}
-                      />
-                    );
-                  })
-                ) : (
-                  <p className="font-Montserrat text-sm gap-2 text-sky-800 h-full flex">
-                    Nenhum agendamento realizado.
-                  </p>
-                )}
-              </div>
+          </div>
+          <div className="w-full">
+            <h3 className="pb-4 text-lg font-Montserrat">Agendamentos</h3>
+            <NewAppointment
+              clientName="Nome do paciente"
+              appointmentTime="--:--"
+              appointmentDate="--/--/----"
+            />
+            <div className="flex flex-col gap-4">
+              {formNewAppointment.length !== 0 ? (
+                formNewAppointment.map((appointmentInfo, index) => {
+                  return (
+                    <NewAppointment
+                      key={index}
+                      appointmentTime="09:00"
+                      appointmentDate="07/08/2023"
+                      clientName={appointmentInfo.Paciente}
+                      clientID={appointmentInfo.cpf}
+                      appointmentDescription={appointmentInfo.descAppointment}
+                      appointmentType="Realização de exame radiográfico."
+                      setNew={true}
+                    />
+                  );
+                })
+              ) : (
+                <p className="font-Montserrat text-sm gap-2 text-sky-800 h-full flex">
+                  Nenhum agendamento realizado.
+                </p>
+              )}
             </div>
-          </section>
+          </div>
+        </section>
       ) : null}
       {contentView === "patients" ? (
         <section className="slideFromRight">
