@@ -1,19 +1,27 @@
 import { useContext } from "react";
 import { XCircle } from "lucide-react";
 import { contextApp } from "../utils/ContextApp";
+import { api } from "../lib/axios";
 
 export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault();
-    // window.location.href = '';
     const valueInputs = document.querySelectorAll("input, textarea");
     const formValues = {};
     valueInputs.forEach((input) => {
       formValues[input.name] = input.value;
     });
     setFormNewAppointment([...formNewAppointment, { ...formValues }]);
+  
+
+    //Cadastrando dados no BD
+    const response = await api.post("/appointment", {
+      nameClient: formValues.Paciente,
+      idUser: formValues.cpf,
+      description: formValues.descAppointment,
+    });
     closeModal();
   }
 
