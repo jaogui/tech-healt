@@ -1,15 +1,15 @@
 import { React, useContext, useEffect, useState } from "react";
 import { contextApp } from "../utils/ContextApp";
-import DashboardBlock from "../components/DashboardBlock";
+import DashboardBlock from "./DashboardBlock";
 import Notification from "./Notification";
-import Datepicker from "../components/Datepicker";
-import InputSeach from "../components/InputSeach";
-import ProfileInfo from "../components/ProfileInfo";
+import Datepicker from "./Datepicker";
+import InputSeach from "./InputSeach";
+import ProfileInfo from "./ProfileInfo";
 import NewAppointment from "./NewAppointment";
 import AppointmentInfo from "./AppointmentInfo";
 import { Smile } from "lucide-react";
 
-function ContentMain() {
+export function ContentTabs() {
   const { contentView, qtdNotice, addNotice, formNewAppointment } =
     useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
@@ -283,5 +283,3 @@ function ContentMain() {
     </main>
   );
 }
-
-export default ContentMain;

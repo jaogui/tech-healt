@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { XCircle } from "lucide-react";
 import { contextApp } from "../utils/ContextApp";
 
-function ModalForm({ titleModal, descModal, openModal, closeModal }) {
+export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
 
   function onSubmit(event) {
@@ -87,4 +87,3 @@ function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     </div>
   );
 }
-export default ModalForm;
