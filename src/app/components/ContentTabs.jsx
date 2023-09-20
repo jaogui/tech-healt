@@ -8,6 +8,7 @@ import ProfileInfo from "./ProfileInfo";
 import NewAppointment from "./NewAppointment";
 import AppointmentInfo from "./AppointmentInfo";
 import { Smile } from "lucide-react";
+import { api } from "../lib/axios";
 
 export function ContentTabs() {
   const { contentView, qtdNotice, addNotice, formNewAppointment } =
@@ -17,46 +18,19 @@ export function ContentTabs() {
   //Init notificações
   useEffect(() => {
     if (!initialNoticesAdded) {
-      const initialNotices = [
-        {
-          title: "Solicitação",
-          description: "Luciano solicitou consulta.",
-          id: "notification_1",
-        },
-        {
-          title: "Confirmação",
-          description: "Luciana confirmou horário.",
-          id: "notification_2",
-        },
-        {
-          title: "Alteração",
-          description: "Luciana alterou horário.",
-          id: "notification_3",
-        },
-        {
-          title: "Alteração",
-          description: "Luiz solicitou alterou consulta.",
-          id: "notification_4",
-        },
-        {
-          title: "Confirmação",
-          description: "Gabriel confirmou agendamento de consulta.",
-          id: "notification_5",
-        },
-        {
-          title: "Cancelamento",
-          description: "Gabriel cancelou consulta.",
-          id: "notification_6",
-        },
-      ];
+      async function getNotifications() {
+        const response = await api.get("/notifications");
+        const data = response.data;
 
-      // Adiciona notificaçoes ao contexto
-      if (qtdNotice.length === 0) {
-        initialNotices.forEach((notice) => {
-          addNotice(notice);
-        });
-        setInitialNoticesAdded(true);
+        // Adiciona notificaçoes ao contexto
+        if (qtdNotice.length === 0) {
+          data.forEach((notice) => {
+            addNotice(notice);
+          });
+          setInitialNoticesAdded(true);
+        }
       }
+      getNotifications();
     }
   }, [addNotice]);
 
@@ -115,24 +89,22 @@ export function ContentTabs() {
                 </h3>
                 <div className="flex gap-2 h-full">
                   <div className="flex flex-col gap-4 w-full">
-                    {qtdNotice.length === 0 ? (
+                    {qtdNotice.length !== 0 && initialNoticesAdded ? (
+                      <div className="flex flex-col gap-4 w-full">
+                        {qtdNotice.map((notice) => (
+                          <Notification
+                            key={notice.id}
+                            titleNotice={notice.type}
+                            idCheckbox={notice.id}
+                            descriptionNotice={notice.description}
+                          />
+                        ))}
+                      </div>
+                    ) : (
                       <p className="font-Montserrat font-sm gap-2 text-sky-800 h-full flex justify-center items-center">
                         Todas notificações foram visualizadas
                         <Smile size={20} />
                       </p>
-                    ) : (
-                      <>
-                        <div className="flex flex-col gap-4 w-full">
-                          {qtdNotice.map((notice) => (
-                            <Notification
-                              key={notice.id}
-                              titleNotice={notice.title}
-                              idCheckbox={notice.id}
-                              descriptionNotice={notice.description}
-                            />
-                          ))}
-                        </div>
-                      </>
                     )}
                   </div>
                 </div>
