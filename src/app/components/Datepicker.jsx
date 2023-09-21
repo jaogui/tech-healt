@@ -5,7 +5,7 @@ import { ptBR } from "date-fns/locale";
 import "../../../public/styles/datepicker.css";
 import "react-day-picker/dist/style.css";
 
-function Datepicker({ style }) {
+export function Datepicker({ style }) {
   const [selected, setSelected] = useState(null);
 
   let footer = <p className="datepickerFooter">Selecione uma data..</p>;
@@ -30,5 +30,3 @@ function Datepicker({ style }) {
     </div>
   );
 }
-
-export default Datepicker;

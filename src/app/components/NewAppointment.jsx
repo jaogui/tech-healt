@@ -10,7 +10,7 @@ import {
   Clock,
 } from "lucide-react";
 
-function NewAppointment({
+export function NewAppointment({
   appointmentTime,
   appointmentDate,
   clientName,
@@ -81,14 +81,12 @@ function NewAppointment({
       ) : (
         <button
           onClick={toggleModal}
-          className="flex gap-2 py-2 my-1 mb-4 justify-center items-center text-center text-zinc-600 w-full bg-slate-300 rounded-md uppercase text-sm shadow-sm hover:bg-neutral-300 hover:text-zinc-900 hover:font-bold"
+          className="flex gap-2 py-2 my-1 mb-4 justify-center items-center text-center text-zinc-600 w-full bg-slate-300 rounded-md uppercase text-md shadow-sm hover:bg-neutral-300 hover:text-zinc-900 hover:font-bold"
         >
-          Cadastre um agendamento
+          Cadastre novo agendamento
           <PlusCircle size={20} />
         </button>
       )}
     </>
   );
 }
-
-export default NewAppointment;

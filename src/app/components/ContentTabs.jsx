@@ -1,21 +1,20 @@
 import { React, useContext, useEffect, useState } from "react";
-import { contextApp } from "../utils/ContextApp";
-import DashboardBlock from "./DashboardBlock";
-import Notification from "./Notification";
-import Datepicker from "./Datepicker";
-import InputSeach from "./InputSeach";
-import ProfileInfo from "./ProfileInfo";
-import NewAppointment from "./NewAppointment";
-import AppointmentInfo from "./AppointmentInfo";
+import { DashboardBlock } from "./DashboardBlock";
+import { Notification } from "./Notification";
+import { Datepicker } from "./Datepicker";
+import { InputSeach } from "./InputSeach";
+import { ProfileInfo } from "./ProfileInfo";
+import { NewAppointment } from "./NewAppointment";
+import { AppointmentInfo } from "./AppointmentInfo";
 import { Smile } from "lucide-react";
 import { api } from "../lib/axios";
+import { contextApp } from "../utils/ContextApp";
 
 export function ContentTabs() {
   const { contentView, qtdNotice, addNotice, formNewAppointment } =
     useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
-  //Init notificações
   useEffect(() => {
     if (!initialNoticesAdded) {
       async function getNotifications() {
@@ -27,7 +26,7 @@ export function ContentTabs() {
           data.forEach((notice) => {
             addNotice(notice);
           });
-          setInitialNoticesAdded(true);
+          setInitialNoticesAdded(true); //
         }
       }
       getNotifications();

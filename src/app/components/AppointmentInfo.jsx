@@ -6,7 +6,7 @@ import {
   Pencil,
 } from "lucide-react";
 
-function AppointmentInfo({
+export function AppointmentInfo({
   clientName,
   clientID,
   clientDate,
@@ -187,4 +187,3 @@ function AppointmentInfo({
   );
 }
 
-export default AppointmentInfo;

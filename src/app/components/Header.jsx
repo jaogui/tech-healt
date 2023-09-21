@@ -7,7 +7,7 @@ import {
   FileEdit,
 } from "lucide-react";
 
-function Header() {
+export function Header() {
   const [notification, setNotification] = React.useState(false);
 
   function toggleNotification() {
@@ -68,5 +68,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
