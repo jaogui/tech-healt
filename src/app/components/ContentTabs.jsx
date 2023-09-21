@@ -11,12 +11,18 @@ import { api } from "../lib/axios";
 import { contextApp } from "../utils/ContextApp";
 
 export function ContentTabs() {
-  const { contentView, qtdNotice, addNotice, formNewAppointment } =
-    useContext(contextApp);
+  const {
+    contentView,
+    qtdNotice,
+    addNotice,
+    formNewAppointment,
+    setFormNewAppointment,
+  } = useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
 
   useEffect(() => {
     if (!initialNoticesAdded) {
+      //Pega as notificações do banco de dados
       async function getNotifications() {
         const response = await api.get("/notifications");
         const data = response.data;
@@ -33,12 +39,15 @@ export function ContentTabs() {
     }
   }, [addNotice]);
 
-
-  // useEffect(()=>{
-  //   async function getAppointments(){
-  //     const response = await.get("/notifications");
-  //   }
-  // },[formNewAppointment])
+  //Pega os items de agendamento do banco de dados.
+  useEffect(() => {
+    async function getAppointments() {
+      const response = await api.get("/appointment");
+      const data = response.data;
+      setFormNewAppointment(data);
+    }
+    getAppointments();
+  }, [formNewAppointment]);
 
   return (
     <main className="px-9 py-6">
@@ -174,9 +183,9 @@ export function ContentTabs() {
                       key={index}
                       appointmentTime="09:00"
                       appointmentDate="07/08/2023"
-                      clientName={appointmentInfo.Paciente}
-                      clientID={appointmentInfo.cpf}
-                      appointmentDescription={appointmentInfo.descAppointment}
+                      clientName={appointmentInfo.nameClient}
+                      clientID={appointmentInfo.idUser}
+                      appointmentDescription={appointmentInfo.description}
                       appointmentType="Realização de exame radiográfico."
                       setNew={true}
                     />
