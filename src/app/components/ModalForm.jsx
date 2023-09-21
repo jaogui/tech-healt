@@ -16,12 +16,13 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     setFormNewAppointment([...formNewAppointment, { ...formValues }]);
   
 
-    //Cadastrando dados no BD
-    const response = await api.post("/appointment", {
+      //Cadastrando dados no BD
+      await api.post("/appointment", {
       nameClient: formValues.Paciente,
       idUser: formValues.cpf,
       description: formValues.descAppointment,
     });
+
     closeModal();
   }
 

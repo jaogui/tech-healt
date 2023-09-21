@@ -13,3 +13,8 @@ Content-Type: application/json
   "idUser": "ID do Usuário",
   "description": "Descrição do Agendamento"
 }
+
+###
+
+# @name get-appointments
+GET http://localhost:3333/appointment

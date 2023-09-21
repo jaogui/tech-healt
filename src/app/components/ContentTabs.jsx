@@ -33,6 +33,13 @@ export function ContentTabs() {
     }
   }, [addNotice]);
 
+
+  // useEffect(()=>{
+  //   async function getAppointments(){
+  //     const response = await.get("/notifications");
+  //   }
+  // },[formNewAppointment])
+
   return (
     <main className="px-9 py-6">
       {contentView === "workflow" ? (
