@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { XCircle } from "lucide-react";
 import { contextApp } from "../utils/ContextApp";
 import { api } from "../lib/axios";
+import { formatCPF } from "../utils/formatCPF";
+import { formatDate } from "../utils/formatDate";
 
 export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
+  const [cpfFormat, setCpfFormat] = useState("");
+  const [dateFormat, setDateFormat] = useState("");
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -14,16 +18,25 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
       formValues[input.name] = input.value;
     });
     setFormNewAppointment([...formNewAppointment, { ...formValues }]);
-  
 
-      //Cadastrando dados no BD
-      await api.post("/appointment", {
+    //Cadastrando dados no BD
+    await api.post("/appointment", {
       nameClient: formValues.Paciente,
       idUser: formValues.cpf,
       description: formValues.descAppointment,
     });
 
     closeModal();
+  }
+
+  function handleInputCpf(event) {
+    const formattedCpf = formatCPF(event);
+    setCpfFormat(formattedCpf);
+  }
+
+  function handleInputDate(event) {
+    const formattedDate = formatDate(event);
+    setDateFormat(formattedDate);
   }
 
   return (
@@ -55,8 +68,11 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                 type="text"
                 name="cpf"
                 id="cpfPatient"
+                value={cpfFormat}
                 required
+                placeholder="xxx.xxx.xxx-xx"
                 className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
+                onChange={handleInputCpf}
               />
             </label>
             <label
@@ -73,6 +89,37 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                 required
               />
             </label>
+            <div className="flex gap-4">
+              <label
+                htmlFor="dateAppointment"
+                className="flex flex-col gap-1 text-sm py-2"
+              >
+                Data do agendamento:
+                <input
+                  name="dateAppointment"
+                  id="dateAppointment"
+                  className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white max-w-[100px]"
+                  placeholder="dd/mm/aaaa"
+                  value={dateFormat}
+                  required
+                  onChange={handleInputDate}
+                />
+              </label>
+              <label
+                htmlFor="timeAppointment"
+                className="flex flex-col gap-1 text-sm py-2"
+              >
+                Horário:
+                <input
+                  name="timeAppointment"
+                  id="timeAppointment"
+                  className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white max-w-[100px]"
+                  placeholder="hh:mm"
+                  // value={}
+                  required
+                />
+              </label>
+            </div>
             <div className="w-full pt-5 flex gap-2 justify-end">
               <button
                 className="w-[100px] py-1 text-sm font-Montserrat rounded-sm bg-sky-200"
