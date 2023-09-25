@@ -11,7 +11,8 @@ Content-Type: application/json
 {
   "nameClient": "Nome do Cliente",
   "idUser": "ID do Usuário",
-  "description": "Descrição do Agendamento"
+  "description": "Descrição do Agendamento",
+  "dateAppointment": "26/09/2023"
 }
 
 ###

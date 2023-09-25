@@ -14,8 +14,9 @@ model Notifications {
 }
 
 model Appointment {
-  id          String @id @default(uuid())
-  nameClient  String
-  idUser      String
-  description String
+  id              String @id @default(uuid())
+  nameClient      String
+  idUser          String
+  description     String
+  dateAppointment String
 }
