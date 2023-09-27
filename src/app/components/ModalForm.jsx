@@ -27,6 +27,7 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
       idUser: formValues.cpf,
       description: formValues.descAppointment,
       dateAppointment: formValues.dateAppointment,
+      timeAppointment: formValues.timeAppointment,
     });
 
     closeModal();

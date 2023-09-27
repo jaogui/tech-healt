@@ -181,12 +181,11 @@ export function ContentTabs() {
                   return (
                     <NewAppointment
                       key={index}
-                      appointmentTime="09:00"
+                      appointmentTime={appointmentInfo.timeAppointment}
                       appointmentDate={appointmentInfo.dateAppointment}
                       clientName={appointmentInfo.nameClient}
                       clientID={appointmentInfo.idUser}
                       appointmentDescription={appointmentInfo.description}
-                      appointmentType="Realização de exame radiográfico."
                       setNew={true}
                     />
                   );

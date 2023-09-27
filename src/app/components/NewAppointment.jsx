@@ -17,7 +17,6 @@ export function NewAppointment({
   clientID,
   clientDate,
   appointmentDescription,
-  appointmentType,
   setNew,
 }) {
   const [modalFormView, setModalFormView] = useState(false);
@@ -59,7 +58,6 @@ export function NewAppointment({
                 </p>
                 <p className="font-semibold">{clientDate}</p>
                 <p>{appointmentDescription}</p>
-                <p>{appointmentType}</p>
               </span>
             </div>
           </div>
