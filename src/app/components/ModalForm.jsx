@@ -4,11 +4,13 @@ import { contextApp } from "../utils/ContextApp";
 import { api } from "../lib/axios";
 import { formatCPF } from "../utils/formatCPF";
 import { formatDate } from "../utils/formatDate";
+import { formatTime } from "../utils/formatTime";
 
 export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
-  const [cpfFormat, setCpfFormat] = useState("");
-  const [dateFormat, setDateFormat] = useState("");
+  const [cpfFormat, setCpfFormat] = useState('');
+  const [dateFormat, setDateFormat] = useState('');
+  const [timeFormat, setTimeFormat] = useState('');
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -24,6 +26,7 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
       nameClient: formValues.Paciente,
       idUser: formValues.cpf,
       description: formValues.descAppointment,
+      dateAppointment: formValues.dateAppointment,
     });
 
     closeModal();
@@ -37,6 +40,11 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   function handleInputDate(event) {
     const formattedDate = formatDate(event);
     setDateFormat(formattedDate);
+  }
+
+  function handleInputTime(event) {
+    const formattedTime = formatTime(event);
+    setTimeFormat(formattedTime);
   }
 
   return (
@@ -114,9 +122,10 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                   name="timeAppointment"
                   id="timeAppointment"
                   className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white max-w-[100px]"
-                  placeholder="hh:mm"
-                  // value={}
+                  value={timeFormat}
                   required
+                  placeholder="hh:mm"
+                  onChange={handleInputTime}
                 />
               </label>
             </div>

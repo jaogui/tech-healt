@@ -182,7 +182,7 @@ export function ContentTabs() {
                     <NewAppointment
                       key={index}
                       appointmentTime="09:00"
-                      appointmentDate="07/08/2023"
+                      appointmentDate={appointmentInfo.dateAppointment}
                       clientName={appointmentInfo.nameClient}
                       clientID={appointmentInfo.idUser}
                       appointmentDescription={appointmentInfo.description}
