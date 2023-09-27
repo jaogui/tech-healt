@@ -19,4 +19,5 @@ model Appointment {
   idUser          String
   description     String
   dateAppointment String
+  timeAppointment String
 }
