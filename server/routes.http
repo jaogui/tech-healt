@@ -20,3 +20,9 @@ Content-Type: application/json
 
 # @name get-appointments
 GET http://localhost:3333/appointment
+
+
+###
+
+# @name get-doctors
+GET http://localhost:3333/doctors

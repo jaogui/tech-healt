@@ -46,10 +46,7 @@ export function NewAppointment({
           </p>
           <div className="flex gap-4 pt-2.5">
             <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
-              <img
-                className="rounded-full"
-                src="https://github.com/jaogui.png"
-              />
+             <User2 />
             </div>
             <div className="flex flex-col text-sm">
               <span className="flex flex-col">

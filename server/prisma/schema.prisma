@@ -21,3 +21,11 @@ model Appointment {
   dateAppointment String
   timeAppointment String
 }
+
+model Doctors {
+  id             String @id @default(uuid())
+  nameDoctor     String
+  company        String
+  specialization String
+  status         String
+}
