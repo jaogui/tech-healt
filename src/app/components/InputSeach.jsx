@@ -1,7 +1,7 @@
 import React from "react";
 import { Search } from "lucide-react";
 
-function InputSeach() {
+export function InputSeach() {
   return (
     <form className="max-w-[360px] relative">
       <input
@@ -13,5 +13,3 @@ function InputSeach() {
     </form>
   );
 }
-
-export default InputSeach;

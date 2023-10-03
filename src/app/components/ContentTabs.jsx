@@ -1,64 +1,63 @@
 import { React, useContext, useEffect, useState } from "react";
-import { contextApp } from "../utils/ContextApp";
-import DashboardBlock from "../components/DashboardBlock";
-import Notification from "./Notification";
-import Datepicker from "../components/Datepicker";
-import InputSeach from "../components/InputSeach";
-import ProfileInfo from "../components/ProfileInfo";
-import NewAppointment from "./NewAppointment";
-import AppointmentInfo from "./AppointmentInfo";
+import { DashboardBlock } from "./DashboardBlock";
+import { Notification } from "./Notification";
+import { Datepicker } from "./Datepicker";
+import { InputSeach } from "./InputSeach";
+import { ProfileInfo } from "./ProfileInfo";
+import { NewAppointment } from "./NewAppointment";
+import { AppointmentInfo } from "./AppointmentInfo";
 import { Smile } from "lucide-react";
+import { api } from "../lib/axios";
+import { contextApp } from "../utils/ContextApp";
 
-function ContentMain() {
-  const { contentView, qtdNotice, addNotice, formNewAppointment } =
-    useContext(contextApp);
+export function ContentTabs() {
+  const {
+    contentView,
+    qtdNotice,
+    addNotice,
+    formNewAppointment,
+    setFormNewAppointment,
+  } = useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
+  const [doctorsInfo, setDoctorsInfo] = useState([]);
 
-  //Init notificações
   useEffect(() => {
     if (!initialNoticesAdded) {
-      const initialNotices = [
-        {
-          title: "Solicitação",
-          description: "Luciano solicitou consulta.",
-          id: "notification_1",
-        },
-        {
-          title: "Confirmação",
-          description: "Luciana confirmou horário.",
-          id: "notification_2",
-        },
-        {
-          title: "Alteração",
-          description: "Luciana alterou horário.",
-          id: "notification_3",
-        },
-        {
-          title: "Alteração",
-          description: "Luiz solicitou alterou consulta.",
-          id: "notification_4",
-        },
-        {
-          title: "Confirmação",
-          description: "Gabriel confirmou agendamento de consulta.",
-          id: "notification_5",
-        },
-        {
-          title: "Cancelamento",
-          description: "Gabriel cancelou consulta.",
-          id: "notification_6",
-        },
-      ];
+      //Pega as notificações do banco de dados
+      async function getNotifications() {
+        const response = await api.get("/notifications");
+        const data = response.data;
 
-      // Adiciona notificaçoes ao contexto
-      if (qtdNotice.length === 0) {
-        initialNotices.forEach((notice) => {
-          addNotice(notice);
-        });
-        setInitialNoticesAdded(true);
+        // Adiciona notificaçoes ao contexto
+        if (qtdNotice.length === 0) {
+          data.forEach((notice) => {
+            addNotice(notice);
+          });
+          setInitialNoticesAdded(true); //
+        }
       }
+      getNotifications();
     }
   }, [addNotice]);
+
+  //Pega os items de agendamento do banco de dados.
+  useEffect(() => {
+    async function getAppointments() {
+      const response = await api.get("/appointment");
+      const data = response.data;
+      setFormNewAppointment(data);
+    }
+    getAppointments();
+  }, []);
+
+  useEffect(() => {
+    async function getDoctors() {
+      const doctors = await api.get("/doctors");
+      const data = doctors.data;
+      setDoctorsInfo(data);
+    }
+    getDoctors();
+  }, []);
 
   return (
     <main className="px-9 py-6">
@@ -115,24 +114,22 @@ function ContentMain() {
                 </h3>
                 <div className="flex gap-2 h-full">
                   <div className="flex flex-col gap-4 w-full">
-                    {qtdNotice.length === 0 ? (
+                    {qtdNotice.length !== 0 && initialNoticesAdded ? (
+                      <div className="flex flex-col gap-4 w-full">
+                        {qtdNotice.map((notice) => (
+                          <Notification
+                            key={notice.id}
+                            titleNotice={notice.type}
+                            idCheckbox={notice.id}
+                            descriptionNotice={notice.description}
+                          />
+                        ))}
+                      </div>
+                    ) : (
                       <p className="font-Montserrat font-sm gap-2 text-sky-800 h-full flex justify-center items-center">
                         Todas notificações foram visualizadas
                         <Smile size={20} />
                       </p>
-                    ) : (
-                      <>
-                        <div className="flex flex-col gap-4 w-full">
-                          {qtdNotice.map((notice) => (
-                            <Notification
-                              key={notice.id}
-                              titleNotice={notice.title}
-                              idCheckbox={notice.id}
-                              descriptionNotice={notice.description}
-                            />
-                          ))}
-                        </div>
-                      </>
                     )}
                   </div>
                 </div>
@@ -149,36 +146,16 @@ function ContentMain() {
           <div className="w-full max-w-[550px]">
             <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
             <div className="flex flex-col gap-4">
-              <ProfileInfo
-                nameProfile="Dra. Renata"
-                company="MedBrasil"
-                specialization="Pediatria"
-                status="Atendendo"
-              />
-              <ProfileInfo
-                nameProfile="Dr. Robson"
-                company="MedBrasil"
-                specialization="Fisioterapia"
-                status="Disponível"
-              />
-              <ProfileInfo
-                nameProfile="Dra. Bruna"
-                company="MedBrasil"
-                specialization="Psicologia"
-                status="Ausente"
-              />
-              <ProfileInfo
-                nameProfile="Dra. Gabriel"
-                company="MedBrasil"
-                specialization="Psicologia"
-                status="Ausente"
-              />
-              <ProfileInfo
-                nameProfile="Dra. Junior"
-                company="MedBrasil"
-                specialization="Psicologia"
-                status="Disponível"
-              />
+              {doctorsInfo.map((doctor) => (
+                <div key={doctor.id}>
+                  <ProfileInfo
+                    nameProfile={doctor.nameDoctor}
+                    company={doctor.company}
+                    specialization={doctor.specialization}
+                    status={doctor.status}
+                  />
+                </div>
+              ))}
             </div>
           </div>
           <div className="w-full">
@@ -194,12 +171,11 @@ function ContentMain() {
                   return (
                     <NewAppointment
                       key={index}
-                      appointmentTime="09:00"
-                      appointmentDate="07/08/2023"
-                      clientName={appointmentInfo.Paciente}
-                      clientID={appointmentInfo.cpf}
-                      appointmentDescription={appointmentInfo.descAppointment}
-                      appointmentType="Realização de exame radiográfico."
+                      appointmentTime={appointmentInfo.timeAppointment}
+                      appointmentDate={appointmentInfo.dateAppointment}
+                      clientName={appointmentInfo.nameClient}
+                      clientID={appointmentInfo.idUser}
+                      appointmentDescription={appointmentInfo.description}
                       setNew={true}
                     />
                   );
@@ -227,7 +203,6 @@ function ContentMain() {
               clientName="Vitor Luiz Almeida"
               clientID="099.999.999-01"
               doctorName="Dra. Renata"
-              doctorID="1111"
               doctorSpecialization="Fisioterapeuta"
               clientDate="26/07/1999"
               data
@@ -237,7 +212,6 @@ function ContentMain() {
               clientName="José"
               clientID="099.555.741-01"
               doctorName="Dr. Luiz"
-              doctorID="2222"
               doctorSpecialization="Clínico"
               clientDate="11/06/1895"
             />
@@ -246,7 +220,6 @@ function ContentMain() {
               clientName="Junior"
               clientID="099.444.245-01"
               doctorName="Dr. Paulo"
-              doctorID="4444"
               doctorSpecialization="Fisioterapeuta"
               clientDate="10/04/1980"
             />
@@ -255,27 +228,8 @@ function ContentMain() {
               clientName="Gabriel"
               clientID="099.999.741-01"
               doctorName="Dr. Renato"
-              doctorID="3333"
               doctorSpecialization="Ortopedista"
               clientDate="05/12/1972"
-            />
-            <AppointmentInfo
-              serviceInfo="Exame"
-              clientName="Jorge"
-              clientID="099.442.741-01"
-              doctorName="Dr. José"
-              doctorID="5555"
-              doctorSpecialization="Ortopedista"
-              clientDate="05/05/1980"
-            />
-            <AppointmentInfo
-              serviceInfo="Exame"
-              clientName="Jorge"
-              clientID="099.442.741-01"
-              doctorName="Dr. José"
-              doctorID="5555"
-              doctorSpecialization="Ortopedista"
-              clientDate="10/05/1980"
             />
           </div>
         </section>
@@ -283,5 +237,3 @@ function ContentMain() {
     </main>
   );
 }
-
-export default ContentMain;

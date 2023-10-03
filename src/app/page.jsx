@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import ContentMain from "./components/ContentMain"
+import {ContentTabs} from './components/ContentTabs'
+import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 import { ContextProvider } from "./utils/ContextApp";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
         <Sidebar />
         <div className="w-full">
           <Header />
-          <ContentMain />
+          <ContentTabs />
         </div>
       </div>
     </ContextProvider>

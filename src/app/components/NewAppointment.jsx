@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalForm from "./ModalForm";
+import {ModalForm} from "./ModalForm";
 import {
   User2,
   ClipboardEdit,
@@ -10,14 +10,13 @@ import {
   Clock,
 } from "lucide-react";
 
-function NewAppointment({
+export function NewAppointment({
   appointmentTime,
   appointmentDate,
   clientName,
   clientID,
   clientDate,
   appointmentDescription,
-  appointmentType,
   setNew,
 }) {
   const [modalFormView, setModalFormView] = useState(false);
@@ -47,10 +46,7 @@ function NewAppointment({
           </p>
           <div className="flex gap-4 pt-2.5">
             <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
-              <img
-                className="rounded-full"
-                src="https://github.com/jaogui.png"
-              />
+             <User2 />
             </div>
             <div className="flex flex-col text-sm">
               <span className="flex flex-col">
@@ -59,7 +55,6 @@ function NewAppointment({
                 </p>
                 <p className="font-semibold">{clientDate}</p>
                 <p>{appointmentDescription}</p>
-                <p>{appointmentType}</p>
               </span>
             </div>
           </div>
@@ -81,14 +76,12 @@ function NewAppointment({
       ) : (
         <button
           onClick={toggleModal}
-          className="flex gap-2 py-2 my-1 mb-4 justify-center items-center text-center text-zinc-600 w-full bg-slate-300 rounded-md uppercase text-sm shadow-sm hover:bg-neutral-300 hover:text-zinc-900 hover:font-bold"
+          className="flex gap-2 py-2 my-1 mb-4 justify-center items-center text-center text-zinc-600 w-full bg-slate-300 rounded-md uppercase text-md shadow-sm hover:bg-neutral-300 hover:text-zinc-900 hover:font-bold"
         >
-          Cadastre um agendamento
+          Cadastre novo agendamento
           <PlusCircle size={20} />
         </button>
       )}
     </>
   );
 }
-
-export default NewAppointment;

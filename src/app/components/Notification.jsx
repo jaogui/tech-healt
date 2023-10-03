@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { contextApp } from "../utils/ContextApp";
 
-function Notification({ titleNotice, descriptionNotice, idCheckbox, priority }) {
+export function Notification({ titleNotice, descriptionNotice, idCheckbox, priority }) {
   const [actionNotice, setActionNotice] = useState(true);
   const [noticeView, setNoticeView] = useState(true);
 
@@ -36,5 +36,3 @@ function Notification({ titleNotice, descriptionNotice, idCheckbox, priority }) 
     </>
   );
 }
-
-export default Notification;

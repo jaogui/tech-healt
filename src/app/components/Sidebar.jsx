@@ -3,7 +3,7 @@ import { contextApp  } from "../utils/ContextApp";
 import {Stethoscope} from 'lucide-react'
 
 
-function Sidebar() {
+export function Sidebar() {
   const {setContentView, contentView } = useContext(contextApp);
 
   return (
@@ -28,5 +28,3 @@ function Sidebar() {
     </nav>
   );
 }
-
-export default Sidebar;

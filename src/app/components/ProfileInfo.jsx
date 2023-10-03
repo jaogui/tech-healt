@@ -1,7 +1,7 @@
 import React from "react";
 import { User2 } from "lucide-react";
 
-function ProfileInfo({ nameProfile, company, specialization, status }) {
+export function ProfileInfo({ nameProfile, company, specialization, status }) {
   const getStatusColorClass = (status) => {
     switch (status) {
       case "Ausente":
@@ -42,5 +42,3 @@ function ProfileInfo({ nameProfile, company, specialization, status }) {
     </article>
   );
 }
-
-export default ProfileInfo;

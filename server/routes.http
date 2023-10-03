@@ -1,0 +1,28 @@
+
+# @name get-notifications
+GET http://localhost:3333/notifications 
+
+###
+
+# @name new-appointment
+POST http://localhost:3333/appointment
+Content-Type: application/json
+
+{
+  "nameClient": "Nome do Cliente",
+  "idUser": "ID do Usuário",
+  "description": "Descrição do Agendamento",
+  "dateAppointment": "26/09/2023",
+  "timeAppointment": "14:20"
+}
+
+###
+
+# @name get-appointments
+GET http://localhost:3333/appointment
+
+
+###
+
+# @name get-doctors
+GET http://localhost:3333/doctors

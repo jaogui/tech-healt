@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Notifications {
+  id          String @id @default(uuid())
+  type        String
+  description String
+}
+
+model Appointment {
+  id              String @id @default(uuid())
+  nameClient      String
+  idUser          String
+  description     String
+  dateAppointment String
+  timeAppointment String
+}
+
+model Doctors {
+  id             String @id @default(uuid())
+  nameDoctor     String
+  company        String
+  specialization String
+  status         String
+}

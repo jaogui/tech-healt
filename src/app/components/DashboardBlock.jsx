@@ -2,7 +2,7 @@ import React from "react";
 import { DollarSign, UserCheck, AlarmPlus, ScrollText } from "lucide-react";
 import NumberCounter from '../utils/animates/NumberCounter'
 
-function DashboardBlock({
+export function DashboardBlock({
   title,
   infoContentMain,
   infoContentSecondary,
@@ -54,5 +54,3 @@ function DashboardBlock({
     </div>
   );
 }
-
-export default DashboardBlock;
