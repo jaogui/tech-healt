@@ -203,7 +203,6 @@ export function ContentTabs() {
               clientName="Vitor Luiz Almeida"
               clientID="099.999.999-01"
               doctorName="Dra. Renata"
-              doctorID="1111"
               doctorSpecialization="Fisioterapeuta"
               clientDate="26/07/1999"
               data
@@ -213,7 +212,6 @@ export function ContentTabs() {
               clientName="José"
               clientID="099.555.741-01"
               doctorName="Dr. Luiz"
-              doctorID="2222"
               doctorSpecialization="Clínico"
               clientDate="11/06/1895"
             />
@@ -222,7 +220,6 @@ export function ContentTabs() {
               clientName="Junior"
               clientID="099.444.245-01"
               doctorName="Dr. Paulo"
-              doctorID="4444"
               doctorSpecialization="Fisioterapeuta"
               clientDate="10/04/1980"
             />
@@ -231,27 +228,8 @@ export function ContentTabs() {
               clientName="Gabriel"
               clientID="099.999.741-01"
               doctorName="Dr. Renato"
-              doctorID="3333"
               doctorSpecialization="Ortopedista"
               clientDate="05/12/1972"
-            />
-            <AppointmentInfo
-              serviceInfo="Exame"
-              clientName="Jorge"
-              clientID="099.442.741-01"
-              doctorName="Dr. José"
-              doctorID="5555"
-              doctorSpecialization="Ortopedista"
-              clientDate="05/05/1980"
-            />
-            <AppointmentInfo
-              serviceInfo="Exame"
-              clientName="Jorge"
-              clientID="099.442.741-01"
-              doctorName="Dr. José"
-              doctorID="5555"
-              doctorSpecialization="Ortopedista"
-              clientDate="10/05/1980"
             />
           </div>
         </section>

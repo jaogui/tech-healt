@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const contextApp = createContext(null);
 
 function ContextProvider({children}) {
-  const [contentView, setContentView] = useState("routine")
+  const [contentView, setContentView] = useState("workflow")
   const [qtdNotice, setQtdNotice] = useState([]);
   const [formNewAppointment, setFormNewAppointment] = useState([]);
 
