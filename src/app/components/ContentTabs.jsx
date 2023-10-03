@@ -19,6 +19,7 @@ export function ContentTabs() {
     setFormNewAppointment,
   } = useContext(contextApp);
   const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
+  const [doctorsInfo, setDoctorsInfo] = useState([]);
 
   useEffect(() => {
     if (!initialNoticesAdded) {
@@ -47,7 +48,16 @@ export function ContentTabs() {
       setFormNewAppointment(data);
     }
     getAppointments();
-  }, [formNewAppointment]);
+  }, []);
+
+  useEffect(() => {
+    async function getDoctors() {
+      const doctors = await api.get("/doctors");
+      const data = doctors.data;
+      setDoctorsInfo(data);
+    }
+    getDoctors();
+  }, []);
 
   return (
     <main className="px-9 py-6">
@@ -136,36 +146,16 @@ export function ContentTabs() {
           <div className="w-full max-w-[550px]">
             <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
             <div className="flex flex-col gap-4">
-              <ProfileInfo
-                nameProfile="Dra. Renata"
-                company="MedBrasil"
-                specialization="Pediatria"
-                status="Atendendo"
-              />
-              <ProfileInfo
-                nameProfile="Dr. Robson"
-                company="MedBrasil"
-                specialization="Fisioterapia"
-                status="Disponível"
-              />
-              <ProfileInfo
-                nameProfile="Dra. Bruna"
-                company="MedBrasil"
-                specialization="Psicologia"
-                status="Ausente"
-              />
-              <ProfileInfo
-                nameProfile="Dra. Gabriel"
-                company="MedBrasil"
-                specialization="Psicologia"
-                status="Ausente"
-              />
-              <ProfileInfo
-                nameProfile="Dra. Junior"
-                company="MedBrasil"
-                specialization="Psicologia"
-                status="Disponível"
-              />
+              {doctorsInfo.map((doctor) => (
+                <div key={doctor.id}>
+                  <ProfileInfo
+                    nameProfile={doctor.nameDoctor}
+                    company={doctor.company}
+                    specialization={doctor.specialization}
+                    status={doctor.status}
+                  />
+                </div>
+              ))}
             </div>
           </div>
           <div className="w-full">
