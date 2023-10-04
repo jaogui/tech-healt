@@ -14,18 +14,21 @@ model Notifications {
 }
 
 model Appointment {
-  id              String @id @default(uuid())
+  id              String  @id @default(uuid())
   nameClient      String
   idUser          String
   description     String
   dateAppointment String
   timeAppointment String
+  doctorId        String
+  doctor          Doctors @relation(fields: [doctorId], references: [id])
 }
 
 model Doctors {
-  id             String @id @default(uuid())
+  id             String        @id @default(uuid())
   nameDoctor     String
   company        String
   specialization String
   status         String
+  Appointment    Appointment[]
 }

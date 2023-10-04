@@ -8,11 +8,12 @@ interface AppointmentData{
   description: string;
   dateAppointment:  string;
   timeAppointment: string;
+  doctorId: string;
 }
 export async function newAppointment(app: FastifyInstance){
   
   app.post('/appointment', async (request, reply) => {
-    const { nameClient, idUser, description, dateAppointment, timeAppointment } = request.body as AppointmentData;
+    const { nameClient, idUser, description, dateAppointment, timeAppointment, doctorId } = request.body as AppointmentData;
 
     const newAppointment = await prisma.appointment.create({
       data:{
@@ -20,7 +21,8 @@ export async function newAppointment(app: FastifyInstance){
         idUser,
         description,
         dateAppointment,
-        timeAppointment
+        timeAppointment,
+        doctorId
       }
     })
     return newAppointment

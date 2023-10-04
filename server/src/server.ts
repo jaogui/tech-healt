@@ -14,6 +14,7 @@ app.register(getAllNotifications)
 app.register(newAppointment)
 app.register(getAllAppointments)
 app.register(getAllDoctors)
+// app.register(deleteAppointments)
 
 app.listen({
   port: 3333,

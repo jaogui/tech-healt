@@ -13,7 +13,8 @@ Content-Type: application/json
   "idUser": "ID do Usuário",
   "description": "Descrição do Agendamento",
   "dateAppointment": "26/09/2023",
-  "timeAppointment": "14:20"
+  "timeAppointment": "14:20",
+  "doctorId": "1144da8c-d3ba-4ed0-a7ad-4062b1d05e5d"
 }
 
 ###
@@ -26,3 +27,7 @@ GET http://localhost:3333/appointment
 
 # @name get-doctors
 GET http://localhost:3333/doctors
+
+###
+
+# DELETE http://localhost:3333/appointment
