@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { contextApp } from "../utils/ContextApp";
+import { contextApp } from "../hooks/ContextApp";
 
 export function Notification({ titleNotice, descriptionNotice, idCheckbox, priority }) {
   const [actionNotice, setActionNotice] = useState(true);

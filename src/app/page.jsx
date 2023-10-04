@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import {ContentTabs} from './components/ContentTabs'
-import { Header } from "./components/Header";
-import { Sidebar } from "./components/Sidebar";
-import { ContextProvider } from "./utils/ContextApp";
+import {ContentTabs} from './pages/ContentTabs'
+import { Header } from "./components/navigation/Header";
+import { Sidebar } from "./components/navigation/Sidebar";
+import { ContextProvider } from "./components/hooks/ContextApp";
 
 export default function Home() {
   return (

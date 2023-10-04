@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { XCircle } from "lucide-react";
-import { contextApp } from "../utils/ContextApp";
-import { api } from "../lib/axios";
-import { formatCPF } from "../utils/formatCPF";
-import { formatDate } from "../utils/formatDate";
-import { formatTime } from "../utils/formatTime";
+import { contextApp } from "../hooks/ContextApp";
+import { api } from "../../lib/axios";
+import { formatCPF } from "../../utils/formatCPF";
+import { formatDate } from "../../utils/formatDate";
+import { formatTime } from "../../utils/formatTime";
 
 export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);

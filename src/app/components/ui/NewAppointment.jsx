@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {ModalForm} from "./ModalForm";
+import {ModalForm} from "../form/ModalForm";
 import {
   User2,
   ClipboardEdit,

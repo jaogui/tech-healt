@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { ptBR } from "date-fns/locale";
-import "../../../public/styles/datepicker.css";
+import "../../../../public/styles/datepicker.css";
 import "react-day-picker/dist/style.css";
 
 export function Datepicker({ style }) {

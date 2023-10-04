@@ -1,14 +1,14 @@
 import { React, useContext, useEffect, useState } from "react";
-import { DashboardBlock } from "./DashboardBlock";
-import { Notification } from "./Notification";
-import { Datepicker } from "./Datepicker";
-import { InputSeach } from "./InputSeach";
-import { ProfileInfo } from "./ProfileInfo";
-import { NewAppointment } from "./NewAppointment";
-import { AppointmentInfo } from "./AppointmentInfo";
+import { DashboardBlock } from "../components/ui/DashboardBlock";
+import { Notification } from "../components/feedbacks/Notification";
+import { Datepicker } from "../components/ui/Datepicker";
+import { InputSeach } from "../components/form/InputSeach";
+import { ProfileInfo } from "../components/ui/ProfileInfo";
+import { NewAppointment } from "../components/ui/NewAppointment";
+import { AppointmentInfo } from "../components/ui/AppointmentInfo";
 import { Smile } from "lucide-react";
 import { api } from "../lib/axios";
-import { contextApp } from "../utils/ContextApp";
+import { contextApp } from "../components/hooks/ContextApp";
 
 export function ContentTabs() {
   const {
