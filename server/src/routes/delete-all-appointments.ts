@@ -13,4 +13,4 @@ export async function deleteAllAppointments() {
   }
 }
 
-deleteAllAppointments();
+// deleteAllAppointments();
