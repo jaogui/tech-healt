@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { XCircle } from "lucide-react";
-import { InputForm } from '../form/InputForm'
+import { InputForm } from "../form/InputForm";
 import { contextApp } from "../hooks/ContextApp";
 import { api } from "../../lib/axios";
 import { formatCPF } from "../../utils/formatCPF";
@@ -26,7 +26,7 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   async function onSubmit(event) {
     event.preventDefault();
     const valueInputs = document.querySelectorAll("input, textarea");
-    const selectedDoctorId = document.getElementById('doctorSelect').value;
+    const selectedDoctorId = document.getElementById("doctorSelect").value;
 
     const formValues = {};
     //Add valores no objeto
@@ -34,19 +34,22 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     valueInputs.forEach((input) => {
       formValues[input.name] = input.value;
     });
-    setFormNewAppointment([...formNewAppointment, { ...formValues }]);
-
 
     //Cadastrando dados no BD
-    await api.post("/appointment", {
-      nameClient: formValues.patient,
-      idUser: formValues.cpf,
-      description: formValues.descAppointment,
-      dateAppointment: formValues.dateAppointment,
-      timeAppointment: formValues.timeAppointment,
-      doctorId: formValues.doctorSelect
-    });
-    closeModal();
+    try {
+      await api.post("/appointment", {
+        nameClient: formValues.nameClient,
+        idUser: formValues.idUser,
+        description: formValues.description,
+        dateAppointment: formValues.dateAppointment,
+        timeAppointment: formValues.timeAppointment,
+        doctorId: formValues.doctorSelect,
+      });
+      setFormNewAppointment([...formNewAppointment, { ...formValues }]);
+      closeModal();
+    } catch (error) {
+      console.error("Erro ao cadastrar no servidor:", error);
+    }
   }
 
   function handleInputCpf(event) {
@@ -71,12 +74,27 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
           <h2 className="text-xl py-1">{titleModal}</h2>
           <p className="text-sm text-zinc-500">{descModal}</p>
           <form className="w-full py-4">
-            <InputForm labelInput="Nome completo do paciente:" idInput="namePatient" nameInput="patient" htmlForLabel="namePatient" />
-            <InputForm labelInput="CPF:" idInput="cpfPatient" nameInput="cpf" htmlForLabel="cpfPatient" onChangeInput={handleInputCpf} valueInput={cpfFormat}/>
-            <label htmlFor="descAppointment" className="flex flex-col gap-1 text-sm py-2">
+            <InputForm
+              labelInput="Nome completo do paciente:"
+              idInput="namePatient"
+              nameInput="nameClient"
+              htmlForLabel="namePatient"
+            />
+            <InputForm
+              labelInput="CPF:"
+              idInput="cpfPatient"
+              nameInput="idUser"
+              htmlForLabel="cpfPatient"
+              onChangeInput={handleInputCpf}
+              valueInput={cpfFormat}
+            />
+            <label
+              htmlFor="descAppointment"
+              className="flex flex-col gap-1 text-sm py-2"
+            >
               Descrição da consulta:
               <textarea
-                name="descAppointment"
+                name="description"
                 id="descAppointment"
                 cols="20"
                 rows="5"
@@ -85,8 +103,24 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
               />
             </label>
             <div className="flex gap-4">
-              <InputForm labelInput="Data do agendamento::" idInput="dateAppointment" nameInput="dateAppointment" htmlForLabel="dateAppointment" onChangeInput={handleInputDate} placeHolder="dd/mm/aaaa" valueInput={dateFormat} />
-              <InputForm labelInput="Horário do agendamento:" idInput="timeAppointment" nameInput="timeAppointment" htmlForLabel="timeAppointment" onChangeInput={handleInputTime} placeHolder="hh:mm" valueInput={timeFormat} />
+              <InputForm
+                labelInput="Data do agendamento::"
+                idInput="dateAppointment"
+                nameInput="dateAppointment"
+                htmlForLabel="dateAppointment"
+                onChangeInput={handleInputDate}
+                placeHolder="dd/mm/aaaa"
+                valueInput={dateFormat}
+              />
+              <InputForm
+                labelInput="Horário do agendamento:"
+                idInput="timeAppointment"
+                nameInput="timeAppointment"
+                htmlForLabel="timeAppointment"
+                onChangeInput={handleInputTime}
+                placeHolder="hh:mm"
+                valueInput={timeFormat}
+              />
             </div>
             <label
               htmlFor="doctorSelect"
