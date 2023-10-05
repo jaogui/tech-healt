@@ -22,7 +22,7 @@ export async function newAppointment(app: FastifyInstance){
         description,
         dateAppointment,
         timeAppointment,
-        doctorId
+        doctorId,
       }
     })
     return newAppointment
