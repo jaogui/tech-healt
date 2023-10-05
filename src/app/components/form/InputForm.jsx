@@ -1,4 +1,4 @@
-export function InputForm({ htmlForLabel, labelInput, nameInput, idInput, onChange, placeHolder, valueInput }) {
+export function InputForm({ htmlForLabel, labelInput, nameInput, idInput, onChangeInput, placeHolder, valueInput }) {
   return (
     <label htmlFor={htmlForLabel} className="flex flex-col gap-1 text-sm py-2">
       {labelInput}
@@ -8,7 +8,7 @@ export function InputForm({ htmlForLabel, labelInput, nameInput, idInput, onChan
         id={idInput}
         required
         className="bg-slate-200 py-1 px-2 rounded-sm focus:bg-white"
-        onChange={onChange}
+        onChange={onChangeInput}
         placeholder={placeHolder}
         value={valueInput}
       />

@@ -19,7 +19,7 @@ export function ContentTabs() {
           <RoutineManagement />
         </>
       ) : null}
-      {contentView === "patients" ? (
+      {contentView === "appointments" ? (
         <>
           <AppointmentRegister />
         </>

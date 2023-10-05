@@ -6,22 +6,27 @@ import { api } from "../../lib/axios";
 
 export function RoutineManagement() {
   const [doctorsInfo, setDoctorsInfo] = useState([]);
+  // const [formAppointment, setFormAppointment] = useState([]);
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
 
   useEffect(() => {
+    // console.log('dados-contexto', formNewAppointment)
     async function getAppointments() {
       const response = await api.get("/appointment");
       const data = response.data;
+      console.log("Dados recebidos do servidor:", data);
       setFormNewAppointment(data);
     }
+    getAppointments();
+  }, []);
 
+  useEffect(() => {
     async function getDoctors() {
       const doctors = await api.get("/doctors");
       const data = doctors.data;
       setDoctorsInfo(data);
     }
     getDoctors();
-    getAppointments();
   }, []);
 
   return (
@@ -50,8 +55,7 @@ export function RoutineManagement() {
         />
         <div className="flex flex-col gap-4">
           {formNewAppointment.length !== 0 ? (
-            formNewAppointment.map((appointmentInfo, index) => {
-              return (
+            formNewAppointment.map((appointmentInfo, index) => (
                 <NewAppointment
                   key={index}
                   appointmentTime={appointmentInfo.timeAppointment}
@@ -61,8 +65,7 @@ export function RoutineManagement() {
                   appointmentDescription={appointmentInfo.description}
                   setNew={true}
                 />
-              );
-            })
+            ))
           ) : (
             <p className="font-Montserrat text-sm gap-2 text-sky-800 h-full flex">
               Nenhum agendamento realizado.

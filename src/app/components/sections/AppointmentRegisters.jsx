@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
 import { InputSeach } from "../form/InputSeach";
 import { AppointmentInfo } from "../ui/AppointmentInfo";
+import { api } from "@/app/lib/axios";
 
 export function AppointmentRegister() {
+  const [Appointments, setAppointments] = useState([])
+
+  useEffect(()=>{
+    async function getInfoAppointments(){
+      const response = await api.get("/appointment")
+      const appointmentsInfo = response.data
+      setAppointments(appointmentsInfo)
+      console.log(appointmentsInfo)
+    }
+    getInfoAppointments()
+  },[])
 
   return (
     <section className="slideFromRight">
@@ -19,9 +32,8 @@ export function AppointmentRegister() {
           doctorName="Dra. Renata"
           doctorSpecialization="Fisioterapeuta"
           clientDate="26/07/1999"
-          data
         />
-        <AppointmentInfo
+        {/* <AppointmentInfo
           serviceInfo="Avaliação"
           clientName="José"
           clientID="099.555.741-01"
@@ -44,7 +56,7 @@ export function AppointmentRegister() {
           doctorName="Dr. Renato"
           doctorSpecialization="Ortopedista"
           clientDate="05/12/1972"
-        />
+        /> */}
       </div>
     </section>
   );
