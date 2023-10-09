@@ -6,7 +6,6 @@ import { api } from "../../lib/axios";
 
 export function RoutineManagement() {
   const [doctorsInfo, setDoctorsInfo] = useState([]);
-  // const [formAppointment, setFormAppointment] = useState([]);
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
 
   useEffect(() => {
@@ -14,7 +13,6 @@ export function RoutineManagement() {
     async function getAppointments() {
       const response = await api.get("/appointment");
       const data = response.data;
-      console.log("Dados recebidos do servidor:", data);
       setFormNewAppointment(data);
     }
     getAppointments();

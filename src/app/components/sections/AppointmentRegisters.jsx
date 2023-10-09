@@ -4,17 +4,17 @@ import { AppointmentInfo } from "../ui/AppointmentInfo";
 import { api } from "@/app/lib/axios";
 
 export function AppointmentRegister() {
-  const [Appointments, setAppointments] = useState([])
+  const [Appointments, setAppointments] = useState([]);
 
-  useEffect(()=>{
-    async function getInfoAppointments(){
-      const response = await api.get("/appointment")
-      const appointmentsInfo = response.data
-      setAppointments(appointmentsInfo)
-      console.log(appointmentsInfo)
+  useEffect(() => {
+    async function getInfoAppointments() {
+      const response = await api.get("/appointment");
+      const appointmentsInfo = response.data;
+      setAppointments(appointmentsInfo);
+      console.log(appointmentsInfo);
     }
-    getInfoAppointments()
-  },[])
+    getInfoAppointments();
+  }, []);
 
   return (
     <section className="slideFromRight">
@@ -25,38 +25,17 @@ export function AppointmentRegister() {
         Consultas Agendadas
       </h3>
       <div className="flex gap-5 flex-wrap">
-        <AppointmentInfo
-          serviceInfo="Avaliação"
-          clientName="Vitor Luiz Almeida"
-          clientID="099.999.999-01"
-          doctorName="Dra. Renata"
-          doctorSpecialization="Fisioterapeuta"
-          clientDate="26/07/1999"
-        />
-        {/* <AppointmentInfo
-          serviceInfo="Avaliação"
-          clientName="José"
-          clientID="099.555.741-01"
-          doctorName="Dr. Luiz"
-          doctorSpecialization="Clínico"
-          clientDate="11/06/1895"
-        />
-        <AppointmentInfo
-          serviceInfo="Avaliação"
-          clientName="Junior"
-          clientID="099.444.245-01"
-          doctorName="Dr. Paulo"
-          doctorSpecialization="Fisioterapeuta"
-          clientDate="10/04/1980"
-        />
-        <AppointmentInfo
-          serviceInfo="Exame"
-          clientName="Gabriel"
-          clientID="099.999.741-01"
-          doctorName="Dr. Renato"
-          doctorSpecialization="Ortopedista"
-          clientDate="05/12/1972"
-        /> */}
+        {Appointments.map((appointment) => (
+          <AppointmentInfo
+          key={appointment.id}
+            serviceInfo="Avaliação"
+            clientName={appointment.nameClient}
+            clientID={appointment.idUser}
+            doctorName={appointment.doctorName}
+            doctorSpecialization={appointment.doctorSpeclialization2}
+            clientDate={appointment.dateAppointment}
+          />
+        ))}
       </div>
     </section>
   );

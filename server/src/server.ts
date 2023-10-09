@@ -4,6 +4,7 @@ import { getAllNotifications } from './routes/get-notification'
 import { newAppointment } from './routes/new-appointment'
 import { getAllAppointments } from './routes/get-appointments'
 import { getAllDoctors } from './routes/get-doctors'
+import app from 'next/app'
 // import { deleteAllAppointments } from './routes/delete-all-appointments'
 
 const app = fastify()

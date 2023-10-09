@@ -172,10 +172,6 @@ export function AppointmentInfo({
                 <p className="font-semibold">{doctorName}</p>
               </span>
               <span className="flex gap-2">
-                CRM:
-                <p className="font-semibold">{doctorID}</p>
-              </span>
-              <span className="flex gap-2">
                 Área:
                 <p className="font-semibold">{doctorSpecialization}</p>
               </span>
