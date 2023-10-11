@@ -8,10 +8,9 @@ export function AppointmentRegister() {
 
   useEffect(() => {
     async function getInfoAppointments() {
-      const response = await api.get("/appointment");
+      const response = await api.get('/appointment');
       const appointmentsInfo = response.data;
       setAppointments(appointmentsInfo);
-      console.log(appointmentsInfo);
     }
     getInfoAppointments();
   }, []);
@@ -27,13 +26,16 @@ export function AppointmentRegister() {
       <div className="flex gap-5 flex-wrap">
         {Appointments.map((appointment) => (
           <AppointmentInfo
-          key={appointment.id}
-            serviceInfo="Avaliação"
+            key={appointment.id}
+            appointmentType={appointment.typeAppointment}
             clientName={appointment.nameClient}
-            clientID={appointment.idUser}
+            clientID={appointment.cpfClient}
             doctorName={appointment.doctorName}
-            doctorSpecialization={appointment.doctorSpeclialization2}
-            clientDate={appointment.dateAppointment}
+            doctorSpecialization={appointment.doctorSpeclialization}
+            clientDate={appointment.dateClient}
+            appointmentDate={appointment.dateAppointment}
+            appointmentTime={appointment.timeAppointment}
+            appointmentValue={appointment.valueAppointment}
           />
         ))}
       </div>
