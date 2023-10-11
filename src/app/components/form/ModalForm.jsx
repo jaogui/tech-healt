@@ -39,7 +39,7 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     try {
       await api.post("/appointment", {
         nameClient: formValues.nameClient,
-        idUser: formValues.idUser,
+        cpfClient: formValues.idUser,
         description: formValues.description,
         dateAppointment: formValues.dateAppointment,
         timeAppointment: formValues.timeAppointment,

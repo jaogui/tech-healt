@@ -59,7 +59,7 @@ export function RoutineManagement() {
                   appointmentTime={appointmentInfo.timeAppointment}
                   appointmentDate={appointmentInfo.dateAppointment}
                   clientName={appointmentInfo.nameClient}
-                  clientID={appointmentInfo.idUser}
+                  clientID={appointmentInfo.cpfClient}
                   appointmentDescription={appointmentInfo.description}
                   setNew={true}
                 />

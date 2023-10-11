@@ -4,10 +4,13 @@ import { prisma } from "../lib/prisma";
 
 interface AppointmentData{
   nameClient: string;
-  idUser: string;
+  cpfClient: string;
+  dateClient: string;
   description: string;
   dateAppointment:  string;
   timeAppointment: string;
+  valueAppointment: string;
+  typeAppointment: string;
   doctorId: string;
   doctorName: string;
   doctorSpecialization: string;
@@ -15,7 +18,7 @@ interface AppointmentData{
 }
 export async function newAppointment(app: FastifyInstance){
   app.post('/appointment', async (request, reply) => {
-    const { nameClient, idUser, description, dateAppointment, timeAppointment, doctorId, doctorName, doctorSpecialization } = request.body as AppointmentData;
+    const { nameClient, cpfClient, dateClient, description, dateAppointment, timeAppointment, valueAppointment, typeAppointment, doctorId, doctorName, doctorSpecialization } = request.body as AppointmentData;
 
     //Busca dados do médico pelo ID
     const doctor = await prisma.doctors.findUnique({
@@ -28,10 +31,13 @@ export async function newAppointment(app: FastifyInstance){
     const newAppointment = await prisma.appointment.create({
       data:{
         nameClient,
-        idUser,
+        cpfClient,
+        dateClient,
         description,
         dateAppointment,
         timeAppointment,
+        typeAppointment,
+        valueAppointment,
         doctorId,
         doctorName: doctor.nameDoctor,
         doctorSpeclialization: doctor.specialization

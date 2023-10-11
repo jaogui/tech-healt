@@ -16,10 +16,13 @@ model Notifications {
 model Appointment {
   id                    String  @id @default(uuid())
   nameClient            String
-  idUser                String
+  cpfClient             String
+  dateClient            String
   description           String
   dateAppointment       String
   timeAppointment       String
+  valueAppointment      String
+  typeAppointment       String
   doctorId              String
   doctorName            String
   doctorSpeclialization String
