@@ -4,7 +4,7 @@ import { AppointmentInfo } from "../ui/AppointmentInfo";
 import { contextApp } from "../hooks/ContextApp";
 
 export function AppointmentRegister() {
-  const { appointmentsGet } = useContext(contextApp);
+  const { appointmentsInfo } = useContext(contextApp);
 
   return (
     <section className="slideFromRight">
@@ -15,9 +15,9 @@ export function AppointmentRegister() {
         Consultas Agendadas
       </h3>
       <>
-        {appointmentsGet ? (
+        {appointmentsInfo ? (
           <div className="flex gap-5 flex-wrap">
-            {appointmentsGet.map((appointment) => (
+            {appointmentsInfo.map((appointment) => (
               <AppointmentInfo
                 key={appointment.id}
                 appointmentType={appointment.typeAppointment}

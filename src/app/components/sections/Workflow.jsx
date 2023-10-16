@@ -4,33 +4,26 @@ import { Notification } from "../feedback/Notification";
 import { Datepicker } from "../ui/Datepicker";
 import { InputSeach } from "../form/InputSeach";
 import { contextApp } from "../hooks/ContextApp";
-import  {api } from '../../lib/axios'
+import { api } from "../../lib/axios";
 import { Smile } from "lucide-react";
 
 export function Workflow() {
-  const [initialNoticesAdded, setInitialNoticesAdded] = useState(false);
   const { qtdNotice, addNotice } = useContext(contextApp);
 
-
   useEffect(() => {
-    if (!initialNoticesAdded) {
-      //Pega as notificações do banco de dados
-      async function getNotifications() {
-        const response = await api.get("/notifications");
-        const data = response.data;
+    async function getNotifications() {
+      const response = await api.get("/notifications");
+      const data = response.data;
 
-        // Adiciona notificaçoes ao contexto
-        if (qtdNotice.length === 0) {
-          data.forEach((notice) => {
-            addNotice(notice);
-          });
-          setInitialNoticesAdded(true); //
-        }
+      // Adiciona notificaçoes ao contexto de controle
+      if (qtdNotice.length === 0) {
+        data.forEach((notice) => {
+          addNotice(notice);
+        });
       }
-      getNotifications();
     }
-  }, [addNotice]);
-
+    getNotifications();
+  }, []);
 
   return (
     <section className="slideFromRight">
@@ -83,7 +76,7 @@ export function Workflow() {
             <h3 className="text-xl py-3 font-Montserrat">Avisos e Lembretes</h3>
             <div className="flex gap-2 h-full">
               <div className="flex flex-col gap-4 w-full">
-                {qtdNotice.length !== 0 && initialNoticesAdded === true ? (
+                {qtdNotice.length > 0 ? (
                   <div className="flex flex-col gap-4 w-full">
                     {qtdNotice.map((notice) => (
                       <Notification

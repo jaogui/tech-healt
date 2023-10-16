@@ -4,17 +4,18 @@ import { createContext, useState, useEffect } from "react";
 const contextApp = createContext(null);
 
 function ContextProvider({ children }) {
-  const [contentView, setContentView] = useState("appointments");
+  const [contentView, setContentView] = useState("workflow");
   const [qtdNotice, setQtdNotice] = useState([]);
   const [formNewAppointment, setFormNewAppointment] = useState([]);
-  const [appointmentsGet, setAppointmentsGet] = useState([]);
+  const [appointmentsInfo, setAppointmentsInfo] = useState([]);
+  const [doctorsInfo, setDoctorsInfo] = useState([]);
+  const [notificationInfo, setNotificationInfo] = useState([])
 
   //Armazena todas as noticias/notificações dentro de um array visualizadas.
   function addNotice(notice) {
     setQtdNotice((prevQtdNotice) => [...prevQtdNotice, notice]);
   }
-
-  //Remove item do array
+  //Remove item notificações
   function removeNotice(indexToRemove) {
     setQtdNotice((prevQtdNotice) =>
       prevQtdNotice.filter((_, index) => index !== indexToRemove)
@@ -32,10 +33,10 @@ function ContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if (appointmentsGet.length === 0) {
-      DataFetching('/appointment', setAppointmentsGet);
-    }
-  }, [appointmentsGet, DataFetching]);
+      DataFetching('/appointment', setAppointmentsInfo);
+      DataFetching('/doctors', setDoctorsInfo);
+      DataFetching('/notifications', setNotificationInfo);
+  }, []);
 
   return (
     <contextApp.Provider
@@ -47,7 +48,9 @@ function ContextProvider({ children }) {
         removeNotice,
         formNewAppointment,
         setFormNewAppointment,
-        appointmentsGet,
+        appointmentsInfo,
+        doctorsInfo,
+        notificationInfo
       }}
     >
       {children}
