@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {ModalForm} from "../form/ModalForm";
+import { AvatarElement } from "./AvatarElement"
 import {
-  User2,
   ClipboardEdit,
   Trash2,
   Calendar,
@@ -45,9 +45,7 @@ export function NewAppointment({
             </button>
           </p>
           <div className="flex gap-4 pt-2.5">
-            <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
-             <User2 />
-            </div>
+            <AvatarElement />
             <div className="flex flex-col text-sm">
               <span className="flex flex-col">
                 <p className="font-semibold">

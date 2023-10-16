@@ -10,10 +10,14 @@ Content-Type: application/json
 
 {
   "nameClient": "Nome do Cliente",
-  "idUser": "ID do Usuário",
-  "description": "Descrição do Agendamento",
+  "cpfClient": "111.111.111-11",
+  "dateClient": "15/10/1995",
+  "description": "Descrição do agendamento teste",
+  "valueAppointment": "82,50",
+  "typeAppointment": "Avaliação",
   "dateAppointment": "26/09/2023",
-  "timeAppointment": "14:20"
+  "timeAppointment": "14:20",
+  "doctorId": "4f5d92b2-9265-40ef-8da0-59819d777e70"
 }
 
 ###
@@ -26,3 +30,8 @@ GET http://localhost:3333/appointment
 
 # @name get-doctors
 GET http://localhost:3333/doctors
+
+###
+
+# @name delete-appointments
+DELETE http://localhost:3333/appointment

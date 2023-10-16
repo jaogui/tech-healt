@@ -5,32 +5,15 @@ import { contextApp } from "../hooks/ContextApp";
 import { api } from "../../lib/axios";
 
 export function RoutineManagement() {
-  const [doctorsInfo, setDoctorsInfo] = useState([]);
-  const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
-
-  useEffect(() => {
-    async function getAppointments() {
-      const response = await api.get("/appointment");
-      const data = response.data;
-      setFormNewAppointment(data);
-    }
-
-    async function getDoctors() {
-      const doctors = await api.get("/doctors");
-      const data = doctors.data;
-      setDoctorsInfo(data);
-    }
-    getDoctors();
-    getAppointments();
-  }, []);
+  const { doctorsInfo, appointmentsInfo } = useContext(contextApp);
 
   return (
     <section className="flex w-full justify-between gap-6">
       <div className="w-full max-w-[550px]">
         <h4 className="pb-4 text-lg font-Montserrat">Médicos</h4>
         <div className="flex flex-col gap-4">
-          {doctorsInfo.map((doctor) => (
-            <div key={doctor.id}>
+          {doctorsInfo.map((doctor, index) => (
+            <div key={index}>
               <ProfileInfo
                 nameProfile={doctor.nameDoctor}
                 company={doctor.company}
@@ -49,20 +32,18 @@ export function RoutineManagement() {
           appointmentDate="--/--/----"
         />
         <div className="flex flex-col gap-4">
-          {formNewAppointment.length !== 0 ? (
-            formNewAppointment.map((appointmentInfo, index) => {
-              return (
+          {appointmentsInfo.length !== 0 ? (
+            appointmentsInfo.map((appointmentInfo, index) => (
                 <NewAppointment
                   key={index}
                   appointmentTime={appointmentInfo.timeAppointment}
                   appointmentDate={appointmentInfo.dateAppointment}
                   clientName={appointmentInfo.nameClient}
-                  clientID={appointmentInfo.idUser}
+                  clientID={appointmentInfo.cpfClient}
                   appointmentDescription={appointmentInfo.description}
                   setNew={true}
                 />
-              );
-            })
+            ))
           ) : (
             <p className="font-Montserrat text-sm gap-2 text-sky-800 h-full flex">
               Nenhum agendamento realizado.

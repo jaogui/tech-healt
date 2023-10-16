@@ -22,7 +22,7 @@ export function Sidebar() {
          <button className={`py-3 px-3 rounded-xl w-full text-left uppercase hover:bg-slate-300 ${contentView === 'routine' ? 'activeMenu'  : ''}`} onClick={() => setContentView('routine')}>Agendamentos</button>
         </li>
         <li className="w-full px-3 mt-1">
-         <button className={`py-3 px-3 rounded-xl w-full text-left uppercase hover:bg-slate-300 ${contentView === 'patients' ? 'activeMenu'  : ''}`} onClick={() => setContentView('patients')}>Consultas</button>
+         <button className={`py-3 px-3 rounded-xl w-full text-left uppercase hover:bg-slate-300 ${contentView === 'appointments' ? 'activeMenu'  : ''}`} onClick={() => setContentView('appointments')}>Consultas</button>
         </li>
       </ul>
     </nav>

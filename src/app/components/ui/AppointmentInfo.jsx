@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   CalendarHeart,
   HeartPulse,
@@ -11,67 +11,31 @@ export function AppointmentInfo({
   clientID,
   clientDate,
   doctorName,
-  doctorID,
   doctorSpecialization,
-  serviceInfo,
+  appointmentType,
+  appointmentDate,
+  appointmentTime,
+  appointmentValue
 }) {
-  const initialValues = {
-    infoDate: "13/11/2023",
-    infoTime: "16:00",
-    infoPrice: "85,00",
-  };
+
   const [isEditable, setIsEditable] = useState({});
-  const [valuesInfo, setValuesInfo] = useState(null);
+  const appointmentDateRef = useRef(null); 
+  const appointmentTimeRef = useRef(null); 
+  const appointmentValueRef = useRef(null); 
 
-  function loadLocalStorageData() {
-    const savedValues = JSON.parse(
-      localStorage.getItem(`infoAppointment${doctorID}`)
-    );
-    if (savedValues) {
-      setValuesInfo(savedValues);
-    }
-    else{
-      setValuesInfo(initialValues)
-    }
-  }
-
-  useEffect(() => {
-    loadLocalStorageData();
-  }, []);
-
-  function handleInfoChange(field, value) {
-    setValuesInfo((prevValues) => ({
-      ...prevValues,
-      [field]: value,
-    }));
-  }
-
-  useEffect(() => {
-    if (valuesInfo !== initialValues) {
-      localStorage.setItem(
-        `infoAppointment${doctorID}`,
-        JSON.stringify(valuesInfo)
-      );
-    }
-  }, [valuesInfo]);
-
-  const refs = {
-    infoDate: useRef(null),
-    infoTime: useRef(null),
-    infoPrice: useRef(null),
-  };
-
-  function alterInput(field) {
+ function alterInput(inputRef) {
     setIsEditable((prevState) => ({
       ...prevState,
-      [field]: true,
+      [inputRef]: true,
     }));
-    refs[field].current.focus();
+    if(inputRef && inputRef.current){
+      inputRef.current.focus()
+    }
   }
 
   return (
     <>
-      {valuesInfo && (
+      { (
         <article className="w-full p-4 flex flex-col rounded-md bg-slate-200 shadow-sm border border-slate-200 max-w-[250px]">
           <div className="text-sm border-b border-zinc-300 pb-5 SchedulingInfo-client">
             <h4 className="text-lg font-semibold py-2 flex gap-2 items-center">
@@ -81,7 +45,7 @@ export function AppointmentInfo({
             <div className="flex flex-col gap-0.5">
               <span className="flex gap-2">
                 Tipo de consulta:
-                <p className="font-semibold">{serviceInfo}</p>
+                <p className="font-semibold">{appointmentType}</p>
               </span>
               <div className="flex gap-2 items-center">
                 <span>
@@ -89,15 +53,12 @@ export function AppointmentInfo({
                   <input
                     className="font-semibold max-w-[85px] bg-slate-200 ml-0.5 pl-1 focus:outline-none focus:bg-slate-300"
                     type="text"
-                    defaultValue={valuesInfo.infoDate}
-                    readOnly={!isEditable.infoDate}
-                    ref={refs.infoDate}
-                    onChange={(e) =>
-                      handleInfoChange("infoDate", e.target.value)
-                    }
+                    defaultValue={appointmentDate}
+                    readOnly={!isEditable}
+                    ref={appointmentDateRef}
                   />
                 </span>
-                <button onClick={() => alterInput("infoDate")}>
+                <button onClick={() => alterInput(appointmentDateRef)}>
                   <Pencil size={15} color="green" />
                 </button>
               </div>
@@ -107,15 +68,12 @@ export function AppointmentInfo({
                   <input
                     className="font-semibold max-w-[50px] bg-slate-200 ml-0.5 pl-1 focus:outline-none focus:bg-slate-300"
                     type="text"
-                    readOnly={!isEditable.infoTime}
-                    defaultValue={valuesInfo.infoTime}
-                    ref={refs.infoTime}
-                    onChange={(e) =>
-                      handleInfoChange("infoTime", e.target.value)
-                    }
+                    readOnly={!appointmentTimeRef}
+                    defaultValue={appointmentTime}
+                    ref={appointmentTimeRef}
                   />
                 </span>
-                <button onClick={() => alterInput("infoTime")}>
+                <button onClick={() => alterInput(appointmentTimeRef)}>
                   <Pencil size={15} color="green" />
                 </button>
               </div>
@@ -126,16 +84,13 @@ export function AppointmentInfo({
                     <input
                       className="font-semibold max-w-[60px] bg-slate-200 ml-0.5 pl-1 focus:outline-none focus:bg-slate-300"
                       type="text"
-                      readOnly={!isEditable.infoPrice}
-                      defaultValue={valuesInfo.infoPrice}
-                      ref={refs.infoPrice}
-                      onChange={(e) =>
-                        handleInfoChange("infoPrice", e.target.value)
-                      }
+                      readOnly={!appointmentValueRef}
+                      defaultValue={appointmentValue}
+                      ref={appointmentValueRef}
                     />
                   </span>
                 </div>
-                <button onClick={() => alterInput("infoPrice")}>
+                <button onClick={() => alterInput(appointmentValueRef)}>
                   <Pencil size={15} color="green" />
                 </button>
               </div>
@@ -170,10 +125,6 @@ export function AppointmentInfo({
               <span className="flex gap-2">
                 Nome:
                 <p className="font-semibold">{doctorName}</p>
-              </span>
-              <span className="flex gap-2">
-                CRM:
-                <p className="font-semibold">{doctorID}</p>
               </span>
               <span className="flex gap-2">
                 Área:
