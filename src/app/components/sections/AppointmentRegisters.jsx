@@ -1,19 +1,10 @@
-import { useEffect, useState } from "react";
+import {  useContext } from "react";
 import { InputSeach } from "../form/InputSeach";
 import { AppointmentInfo } from "../ui/AppointmentInfo";
-import { api } from "@/app/lib/axios";
+import { contextApp } from "../hooks/ContextApp";
 
 export function AppointmentRegister() {
-  const [Appointments, setAppointments] = useState([]);
-
-  useEffect(() => {
-    async function getInfoAppointments() {
-      const response = await api.get('/appointment');
-      const appointmentsInfo = response.data;
-      setAppointments(appointmentsInfo);
-    }
-    getInfoAppointments();
-  }, []);
+  const { appointmentsGet } = useContext(contextApp)
 
   return (
     <section className="slideFromRight">
@@ -24,7 +15,7 @@ export function AppointmentRegister() {
         Consultas Agendadas
       </h3>
       <div className="flex gap-5 flex-wrap">
-        {Appointments.map((appointment) => (
+        {appointmentsGet.map((appointment) => (
           <AppointmentInfo
             key={appointment.id}
             appointmentType={appointment.typeAppointment}
