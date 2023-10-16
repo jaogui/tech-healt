@@ -8,7 +8,6 @@ function ContextProvider({ children }) {
   const [qtdNotice, setQtdNotice] = useState([]);
   const [formNewAppointment, setFormNewAppointment] = useState([]);
   const [appointmentsGet, setAppointmentsGet] = useState([]);
-  const [onDataFetch, setOnDataFetch] = useState(false)
 
   //Armazena todas as noticias/notificações dentro de um array visualizadas.
   function addNotice(notice) {
@@ -32,13 +31,11 @@ function ContextProvider({ children }) {
     }
   }
 
-  useEffect(()=>{
-    if(!onDataFetch){
-    DataFetching('/appointment', setAppointmentsGet)
-    console.log(appointmentsGet)
-    setOnDataFetch(true)
-  }
-  },[onDataFetch, setOnDataFetch])
+  useEffect(() => {
+    if (appointmentsGet.length === 0) {
+      DataFetching('/appointment', setAppointmentsGet);
+    }
+  }, [appointmentsGet, DataFetching]);
 
   return (
     <contextApp.Provider
