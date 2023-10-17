@@ -10,7 +10,8 @@ import { formatTime } from "../../utils/formatTime";
 export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
   const { formNewAppointment, setFormNewAppointment } = useContext(contextApp);
   const [cpfFormat, setCpfFormat] = useState("");
-  const [dateFormat, setDateFormat] = useState("");
+  const [appointmentDate, setAppointmentDate] = useState([]);
+  const [bithDate, setBirthDate] = useState([]);
   const [timeFormat, setTimeFormat] = useState("");
   const [doctorsForm, setDoctorsForm] = useState([]);
 
@@ -25,12 +26,14 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
 
   async function onSubmit(event) {
     event.preventDefault();
-    const valueInputs = document.querySelectorAll("input, textarea");
-    const selectedDoctorId = document.getElementById("doctorSelect").value;
+    const valueInputs = document.querySelectorAll('input, textarea');
+    const selectedDoctorId = document.getElementById('doctorSelect').value;
+    const selectedTypeAppointment = document.getElementById('typeAppointment').value;
 
     const formValues = {};
     //Add valores no objeto
     formValues.doctorSelect = selectedDoctorId;
+    formValues.typeAppointment = selectedTypeAppointment;
     valueInputs.forEach((input) => {
       formValues[input.name] = input.value;
     });
@@ -39,10 +42,13 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
     try {
       await api.post("/appointment", {
         nameClient: formValues.nameClient,
-        cpfClient: formValues.idUser,
+        cpfClient: formValues.cpfPatient,
+        dateClient: formValues.dateClient,
         description: formValues.description,
         dateAppointment: formValues.dateAppointment,
         timeAppointment: formValues.timeAppointment,
+        typeAppointment: formValues.typeAppointment,
+        valueAppointment: formValues.valueAppointment,
         doctorId: formValues.doctorSelect,
       });
       setFormNewAppointment([...formNewAppointment, { ...formValues }]);
@@ -59,7 +65,11 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
 
   function handleInputDate(event) {
     const formattedDate = formatDate(event);
-    setDateFormat(formattedDate);
+    if (event.target.name === "dateAppointment") {
+      setAppointmentDate(formattedDate);
+    }else{
+      setBirthDate(formattedDate)
+    }
   }
 
   function handleInputTime(event) {
@@ -74,20 +84,45 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
           <h2 className="text-xl py-1">{titleModal}</h2>
           <p className="text-sm text-zinc-500">{descModal}</p>
           <form className="w-full py-4">
+            <div className="flex gap-4">
+              <InputForm
+                labelInput="CPF:"
+                idInput="cpfPatient"
+                nameInput="cpfPatient"
+                onChangeInput={handleInputCpf}
+                valueInput={cpfFormat}
+              />
+              <InputForm
+                labelInput="Data de nascimento:"
+                idInput="dateClient"
+                nameInput="dateClient"
+                htmlForLabel="dateClient"
+                placeHolder="dd/mm/yyyy"
+                onChangeInput={handleInputDate}
+                valueInput={bithDate}
+              />
+            </div>
             <InputForm
               labelInput="Nome completo do paciente:"
               idInput="namePatient"
               nameInput="nameClient"
               htmlForLabel="namePatient"
             />
-            <InputForm
-              labelInput="CPF:"
-              idInput="cpfPatient"
-              nameInput="idUser"
-              htmlForLabel="cpfPatient"
-              onChangeInput={handleInputCpf}
-              valueInput={cpfFormat}
-            />
+            <label
+              htmlFor="typeAppointment"
+              className="flex flex-col gap-1 text-sm py-2"
+            >
+              Tipo de consulta:
+              <select
+                name="typeAppointment"
+                id="typeAppointment"
+                className="bg-slate-200 py-1 px-2 rounded-sm"
+              >
+                <option>Avaliação</option>
+                <option>Consulta Geral</option>
+                <option>Consulta Especializada</option>
+              </select>
+            </label>
             <label
               htmlFor="descAppointment"
               className="flex flex-col gap-1 text-sm py-2"
@@ -110,7 +145,7 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                 htmlForLabel="dateAppointment"
                 onChangeInput={handleInputDate}
                 placeHolder="dd/mm/aaaa"
-                valueInput={dateFormat}
+                valueInput={appointmentDate}
               />
               <InputForm
                 labelInput="Horário do agendamento:"
@@ -120,6 +155,13 @@ export function ModalForm({ titleModal, descModal, openModal, closeModal }) {
                 onChangeInput={handleInputTime}
                 placeHolder="hh:mm"
                 valueInput={timeFormat}
+              />
+              <InputForm
+                labelInput="Valor da consulta:"
+                idInput="valueAppointment"
+                nameInput="valueAppointment"
+                htmlForLabel="timeAppointment"
+                placeHolder="00,01"
               />
             </div>
             <label
